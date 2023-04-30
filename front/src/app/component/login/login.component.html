@@ -1,1 +1,25 @@
-<p>login works!</p>
+<form (submit)="onLogin()" class="form-horizontal" >
+
+  <h2>Login</h2>
+
+
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Email</label>
+    <div class="col-lg-10">
+      <input type="text" class="form-control" [(ngModel)]="email" name="email" >
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label class="col-lg-2 control-label">Password</label>
+    <div class="col-lg-10">
+      <input type="password" class="form-control" [(ngModel)]="password" name="password" >
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="pull-right">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+
+</form>

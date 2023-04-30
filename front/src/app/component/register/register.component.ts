@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import {Router} from '@angular/router';
 
@@ -29,14 +29,14 @@ export class RegisterComponent {
       password:this.password  
     }
     
-    this.userservice.createAccount(user).subscribe(resp => {
-      if (!resp){
-        alert('Error: '+resp)
+    this.userservice.createAccount(user).subscribe(resp => 
+    {
+      if (!(resp as any).success){
+        alert('Error: '+(resp as any).message);
+      }else{
+        alert("Account created")
+        this.router.navigate(['/login']);
       }
-
-
-      alert("Account created")
-      this.router.navigate(['/login']);
     });
   }
 
