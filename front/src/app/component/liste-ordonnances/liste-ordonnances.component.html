@@ -1,0 +1,20 @@
+<table id="ordonnances">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Médecin</th>
+        <th scope="col">Date</th>
+        <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let ordonnance of ordonnances">
+            <td>{{ ordonnance.id }}</td>
+            <td>{{ ordonnance.medecin }}</td>
+            <td>{{ ordonnance.date }}</td>
+            <td>
+                <button (click)="onOrdonnanceClicked(ordonnance.id)">Voir</button>
+            </td>
+        
+    </tbody>
+</table>

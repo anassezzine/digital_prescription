@@ -9,8 +9,11 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent {
 
-  name: string='';
+  nom: string='';
+  prenom: string='';
+  identifiant:string='';
   email:string='';
+  numTel:string='';
   password:string='';
 
   constructor(private userservice:UserService ,private router:Router ){
@@ -19,21 +22,26 @@ export class RegisterComponent {
 
 
   onRegister() {
-    if (!this.name || !this.email || !this.password) {
+    if (!this.nom || !this.identifiant || !this.password || !this.prenom || !this.email || !this.numTel) {
       alert('All fields are required');
       return;
     }
     const user={
-      name:this.name,
+      nom:this.nom,
+      identifiant:this.identifiant,
+      password:this.password ,
+      prenom:this.prenom,
       email:this.email,
-      password:this.password  
+      numTel:this.numTel,
     }
     
     this.userservice.createAccount(user).subscribe(resp => 
     {
       if (!(resp as any).success){
+        console.log(resp as any);
         alert('Error: '+(resp as any).message);
       }else{
+        console.log("success");
         alert("Account created")
         this.router.navigate(['/login']);
       }

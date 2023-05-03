@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginComponent {
   
-  email:string='';
+  identifiant:string='';
   password:string='';
 
   constructor(private userservice:UserService ,private router:Router){
@@ -18,13 +18,13 @@ export class LoginComponent {
   }
 
   onLogin(){
-    if(!this.email || !this.password) {
+    if(!this.identifiant || !this.password) {
       alert('All fields are required');
       return;
     }
 
     const user = {
-      email: this.email,
+      identifiant: this.identifiant,
       password: this.password
     }
 
@@ -44,4 +44,12 @@ export class LoginComponent {
     );
   }
 
+  
+  onClickRegister(){
+    console.log("register");
+    this.router.navigate(['/register']);
+  }
+
+  
 }
+

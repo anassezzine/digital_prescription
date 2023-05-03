@@ -1,17 +1,17 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const User = require('../models/user')
-
+const Patient = require('../models/patient')
+const Professionnel = require('../models/professionnel')
 
 //Login
 router.post('/auth', (req, res, next) => {
-  const email = req.body.email;
+  const identifiant  = req.body.identifiant;
   const password = req.body.password;
 
-  const query = {email}
+  const query = {identifiant}
   //Check the user exists
-    User.findOne(query)
+    Patient.findOne(query)
     .then((user) => {
         if (!user) {
             return res.send({
@@ -37,9 +37,11 @@ router.post('/auth', (req, res, next) => {
         //User Is Valid
         //This object is just used to remove the password from the retuned fields
         let userinfo= {
-          name: user.name,
+          nom: user.nom,
+          prenom: user.prenom,
+          numTel:user.numTel,
           email: user.email,
-          id:user._id,
+          identifiant:user.identifiant,
           token
         }
         //Send the response back
@@ -63,13 +65,21 @@ router.post('/auth', (req, res, next) => {
 
 //Registeration
 router.post('/register', (req, res, next) => {
-    let newUser = new User({
-        name: req.body.name,
+  console.log((req.body.identifiant).toString().length);
+  //get the lenth of req.body.numeroSecu?
+
+  if ((req.body.identifiant).toString().length==13){
+    console.log("hi")
+    let newPatient = new Patient({
+        nom: req.body.nom,
+        prenom:req.body.prenom,
         email: req.body.email,
+        numTel:req.body.numTel,
+        identifiant:req.body.identifiant,
         password: req.body.password
     });
 
-    newUser.save()
+    newPatient.save()
     .then(user => {
         res.send({
         success: true,
@@ -83,6 +93,39 @@ router.post('/register', (req, res, next) => {
         message: 'Failed to save the user'
         });
     });
+
+
+  }else if((req.body.identifiant).toString().length==13){
+
+
+    let newPro = new Professionnel({
+      nom: req.body.nom,
+      pre:req.body.lastName,
+      email: req.body.email,
+      numTel:req.body.numTel,
+      identifiant:req.body.identifiant,
+      password: req.body.password
+    });
+    newPro.save()
+    .then(pro => {
+        res.send({
+        success: true,
+        message: 'User saved',
+        pro
+        });
+    })
+    .catch(err => {
+        res.send({
+        success: false,
+        message: 'Failed to save the user'
+        });
+    });
+  }else{
+    res.send({
+      success: false,
+      message: 'Num not valid'
+      });
+  }
 });
 
 module.exports = router;

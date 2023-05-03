@@ -1,25 +1,20 @@
-<form (submit)="onLogin()" class="form-horizontal" >
+<div id="container">
+  <!-- zone de connexion -->
+  
+  <form (submit)="onLogin()">
+    
+  <h1>Connexion</h1>
+  
+  <label><b>Identifiant</b></label>
+  <input type="text" placeholder="Entrer le num de sécurité social ou num de professionnel " name="username" [(ngModel)]="identifiant" name="identifiant" required>
+ 
+  <label><b>Mot de passe</b></label>
+  <input type="password" placeholder="Entrer le mot de passe" name="password" [(ngModel)]="password" name="password" required>
+ 
+  <input type="submit" id='submit' value='SE CONNECTER' >
+  <input type="checkbox" checked="checked"> Se souvenir de moi
 
-  <h2>Login</h2>
+  <button type="button" (click)="onClickRegister()">CRÉER UN COMPTE</button>
 
-
-  <div class="form-group">
-    <label class="col-lg-2 control-label">Email</label>
-    <div class="col-lg-10">
-      <input type="text" class="form-control" [(ngModel)]="email" name="email" >
-    </div>
-  </div>
-
-  <div class="form-group">
-    <label class="col-lg-2 control-label">Password</label>
-    <div class="col-lg-10">
-      <input type="password" class="form-control" [(ngModel)]="password" name="password" >
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="pull-right">
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </div>
-  </div>
-
-</form>
+  </form>
+</div>

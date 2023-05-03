@@ -39,7 +39,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cors());
-require("./config/passport")(passport)
+require("./config/passport_patient")(passport);
+require("./config/passport_professionnel")(passport);
 
 //Static public folder
 app.use(express.static(path.join(__dirname, 'public')));

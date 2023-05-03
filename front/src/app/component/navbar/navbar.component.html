@@ -12,22 +12,17 @@
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
           <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" >
-            <a [routerLink]="['/']">Home</a>
-          </li>
-          <li *ngIf="userService.isLoggedIn()" [routerLinkActive]="['active']">
-            <a [routerLink]="['/main']">Main</a>
+            <a [routerLink]="['/']">Accueil</a>
           </li>
         </ul>
 
         <ul class="nav navbar-nav navbar-right">
           <li *ngIf="!userService.isLoggedIn()" [routerLinkActive]="['active']">
-            <a [routerLink]="['/login']">Login</a>
+            <a [routerLink]="['/login']">Liste Ordonnances</a>
           </li>
-          <li *ngIf="!userService.isLoggedIn()" [routerLinkActive]="['active']">
-            <a [routerLink]="['/register']">Register</a>
-          </li>
+          
           <li *ngIf="userService.isLoggedIn()">
-            <a href="#" (click)="onLogOutClicked()">Logout  </a>
+            <a href="#" (click)="onLogOutClicked()">Profile </a>
           </li>
         </ul>
 

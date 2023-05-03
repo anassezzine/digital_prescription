@@ -1,1 +1,12 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    background-image: url("https://img.freepik.com/photos-gratuite/jeune-beau-medecin-dans-peignoir-medical-stethoscope_1303-17818.jpg?w=996&t=st=1683119353~exp=1683119953~hmac=5ef0d956be9d0233d0d1521f46f07faaec360b41a9c45b1aff6c6caa7c367544");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+}

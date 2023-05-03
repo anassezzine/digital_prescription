@@ -1,16 +1,19 @@
-//User Model
+//patient Model
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // Schema Definition
-const UserSchema = new mongoose.Schema({
-  name: {type :String, required : true},
+const PatientSchema = new mongoose.Schema({
+  nom: {type :String, required : true},
+  prenom: {type :String, required : true},
   email: { type: String, required: true, unique: true },
+  numTel: { type: Number,required: true, unique: true},
+  identifiant: {type :Number, min: 1111111111111, max: 9999999999999 , required : true, unique: true},
   password: { type: String, required: true }
 });
 
 //Pre Save Hook. Used to hash the password
-UserSchema.pre('save', function(next) {
+PatientSchema.pre('save', function(next) {
 
      if (!this.isModified('password'))  {
        return next();
@@ -35,7 +38,7 @@ UserSchema.pre('save', function(next) {
 });
 
 //Custom method to check the password correct when login
-UserSchema.methods.isPasswordMatch = function(plainPassword, hashed, callback) {
+PatientSchema.methods.isPasswordMatch = function(plainPassword, hashed, callback) {
   bcrypt.compare(plainPassword, hashed, (err, isMatch) => {
     if (err) {
       return callback(err);
@@ -44,6 +47,6 @@ UserSchema.methods.isPasswordMatch = function(plainPassword, hashed, callback) {
   });
 }
 
-const User = mongoose.model('User', UserSchema);
+const Patient = mongoose.model('PatientSchema', PatientSchema);
 
-module.exports = User;
+module.exports = Patient;

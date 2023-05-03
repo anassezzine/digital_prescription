@@ -12,14 +12,20 @@ import { NavbarComponent } from './component/navbar/navbar.component';
 import { HomeComponent } from './component/home/home.component';
 import { MainComponent } from './component/main/main.component';
 
+
 import { UserService } from './services/user.service';
 import { AuthGuard } from './gaurds/auth.guard';
+import { ListeOrdonnancesComponent } from './component/liste-ordonnances/liste-ordonnances.component';
+import { OrdonnanceComponent } from './component/ordonnance/ordonnance.component';
+
 
 const AppRoutes: Routes=[
-  {path: '', component:HomeComponent},
+  {path: '', component:LoginComponent},
   {path: 'register', component:RegisterComponent},
   {path: 'login', component:LoginComponent},
   {path: 'main', component:MainComponent, canActivate:[AuthGuard]},
+  {path: 'Ordonnances', component:ListeOrdonnancesComponent},
+  {path: 'ordonnance/:id', component:OrdonnanceComponent}
 ]
 
 @NgModule({
@@ -29,7 +35,9 @@ const AppRoutes: Routes=[
     LoginComponent,
     NavbarComponent,
     HomeComponent,
-    MainComponent
+    MainComponent,
+    ListeOrdonnancesComponent,
+    OrdonnanceComponent
   ],
   imports: [
     BrowserModule,

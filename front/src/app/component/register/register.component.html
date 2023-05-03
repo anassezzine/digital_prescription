@@ -1,30 +1,28 @@
-<form (submit)="onRegister()" class="form-horizontal" >
+<div id="container">
+  <!-- zone de connexion -->
+  
+  <form (submit)="onRegister()">
+  <h1>Création de compte</h1>
+  
+  <label><b>Nom</b></label>
+  <input type="text" placeholder="Entrer le nom" name="nom" [(ngModel)]="nom" name="nom" required>
 
-    <h2>Signup</h2>
-    <div class="form-group">
-      <label class="col-lg-2 control-label">Name</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" [(ngModel)]="name" name="name" >
-      </div>
-    </div>
+  <label><b>Prénom</b></label>
+  <input type="text" placeholder="Entrer le prénom" name="prenom" [(ngModel)]="prenom" name="prenom" required>
+
   
-    <div class="form-group">
-      <label class="col-lg-2 control-label">Email</label>
-      <div class="col-lg-10">
-        <input type="text" class="form-control" [(ngModel)]="email" name="email" >
-      </div>
-    </div>
-  
-    <div class="form-group">
-      <label class="col-lg-2 control-label">Password</label>
-      <div class="col-lg-10">
-        <input type="password" class="form-control" [(ngModel)]="password" name="password" >
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="pull-right">
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
-    </div>
-  
+  <label><b>Identifiant</b></label>
+  <input type="text" placeholder="Entrer le num de sécurité social ou num de professionnel " name="identifiant" [(ngModel)]="identifiant" name="identifiant" required>
+ 
+  <label><b>Email</b></label>
+  <input type="email" placeholder="Entrer votre email" name="email" [(ngModel)]="email" name="email" required>
+
+  <label><b>Numéro de téléphone </b></label>
+  <input type="tel" placeholder="Entrer votre numéro de téléphone" name="numTel" [(ngModel)]="numTel" name="numTel" required>
+
+  <label><b>Mot de passe</b></label>
+  <input type="password" placeholder="Entrer le mot de passe" name="password" [(ngModel)]="password" name="password" required>
+ 
+  <input type="submit" id='submit' value='CREER' >
   </form>
+</div>

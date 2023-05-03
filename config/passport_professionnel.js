@@ -1,7 +1,6 @@
 const JwtStrategy = require('passport-jwt'). Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
-const User = require('../models/user');
-
+const User = require('../models/professionnel');
 
 
 module.exports = async function (passport) {
@@ -12,10 +11,8 @@ module.exports = async function (passport) {
 
     passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
         try {
-            console.log(jwt_payload);
-            console.log(jwt_payload.user._id);
-            const user = await User.findById(jwt_payload.user._id);
-            console.log(user);
+            
+            const user = await User.findById(jwt_payload.professionnel._id);
             if (user) {
                 return done(null, user);
             }
