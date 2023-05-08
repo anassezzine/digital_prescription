@@ -43,16 +43,15 @@ export class UserService {
     localStorage.clear();
   }
 
-  getUserName() {
-    const userJson = localStorage.getItem('nameUser');
-    console.log(userJson);
-    if (userJson!=null) {
-      const user = JSON.parse(userJson);
-      console.log(userJson);
-      return user
-    } else {
-      console.log("userJson");
-      return "";
+  getLoggedInUser() {
+    if (this.isLoggedIn()) {
+      const user = {
+        authToken: localStorage.getItem("authToken"),
+        nameUser: localStorage.getItem("nameUser")
+      };
+      return user;
     }
+    return null;
   }
+
 }

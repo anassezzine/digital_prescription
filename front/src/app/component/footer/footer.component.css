@@ -1,0 +1,78 @@
+.footer-basic{
+    height: 20vh; /*le footer tient sur 25% de la hauteur de la page*/
+    background-color: #424558; /*la couleur de fond du footer*/ 
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+   
+    @media (max-width: 767px) {
+        height: 30vh;
+    }
+    @media (max-width: 991px) {
+        height: 25vh;
+    }
+    @media (max-width: 1199px) {
+        height: 20vh;
+    }
+
+    @media (min-width: 768px) {
+        width: 100%;
+    }
+    @media (min-width: 992px) {
+        width: 100%;
+    }
+    @media (min-width: 1200px) {
+        width: 100%;
+    }
+
+}
+.footer-basic li{
+padding:0 5%; 
+margin-left: 3%; /*pour laisser une marge avec l'élément à gauche*/
+color: #fff /* couleur du texte des liens*/
+}
+.footer-basic ul a {
+color:inherit; /*pour la couleur des liens*/
+text-decoration:none; /*Pour supprimer le soulignement des liens*/
+opacity:0.8; /*pour l'opacité de la couleur*/
+}
+
+.footer-basic ul a:hover {
+opacity:1; /*pour modifier l'opacité de la couleur en survolant l'élément */
+color: #67BE4B;
+}
+
+.footer-basic .social {
+text-align:center; /*pour centrer les icones*/
+padding-bottom:20px; /*l'espace entre l'icone et la bordure en bas du conteneur*/
+}
+
+.footer-basic .social > a {
+font-size:24px; /*la taille des icones*/
+width:40px; /*la largeur de l'icone*/
+height:40px; /*la hauteur de l'icone*/
+line-height:40px;
+display:inline-block; /*pour pouvoir mettre toutes les icones sur la meme ligne*/
+text-align:center; /*pour centrer l'icone dans son conteneur*/
+border-radius:50%; /*pour créer des cercles autour des icones*/
+border:1px solid #fff; /*la taille, l'épaisseur et la couleur de la bordure*/
+margin:0 8px; /*pour avoir un espace entre les icones*/
+margin-top: 10px; /*pour laisser une marge avec l'élément précédent en haut*/
+color:#fff; /*couleur des icones*/
+opacity:0.75; /*opacité de la couleur des icones*/
+}
+
+.footer-basic .social > a:hover {
+opacity:0.9; /*pour modifier l'opacité de la couleur en survolant les icones */
+color: #67BE4B;
+}
+
+.footer-basic .copyright {
+margin-top:30px; /*pour laisser une marge avec l'élément précédent en haut*/
+text-align:center; /*pour centrer le texte*/
+font-size:13px; /*la taille de la police*/
+color:#aaa; /* couleur du texte*/
+
+}
+   
+   

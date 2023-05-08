@@ -1,0 +1,97 @@
+nav {
+  width: 100%; /*la barre de navigation tient sur 100% de la largeur de l'élément parent*/
+  background-color: #424558; /*la couleur de la barre de navigation*/
+  display: flex;
+  position:absolute;
+  top: 0%;
+
+  @media (max-width: 767px) {
+      height: 30vh;
+  }
+  @media (max-width: 991px) {
+      height: 25vh;
+  }
+  @media (max-width: 1199px) {
+      height: 20vh;
+  }
+
+  @media (min-width: 768px) {
+      width: 100%;
+  }
+  @media (min-width: 992px) {
+      width: 100%;
+  }
+  @media (min-width: 1200px) {
+      width: 100%;
+  }
+}
+
+nav li {
+  list-style-type: none;
+  float: left;
+}
+
+nav a {
+  display: inline-block; /*Pour pouvoir cibler les liens facilement*/
+  text-decoration: none; /*Pour supprimer le soulignement des liens*/
+  padding: 20px 30px; /*la distance entre le texte du lien et les bordures du contenant*/
+  color: #fff; /*couleur de texte des liens*/
+  text-transform: uppercase;/*pour mettre le texte en majuscule*/
+  font-size: 15px; /*la taille de police*/
+}
+
+.menu:hover{
+
+  background-color: #67BE4B; /*la couleur de texte des liens au survol*/
+}
+
+.table {
+  display: table; /*pour mettre les liens sous forme de case d'un tableau*/
+  margin: 0 auto; /*les marges par rapport aux autres éléments de la page */
+}
+
+/* Dropdown button */
+.dropbtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  border-radius: 50%;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+  width: 50px;
+  height: 50px;
+  
+}
+
+/* Dropdown content (hidden by default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  z-index: 1;
+  right: 0;
+  left: auto;
+
+}
+
+/* Show the dropdown content when the user clicks on the dropdown button */
+.dropdown:hover .dropdown-content {
+  display: block;
+  background-color: #424558;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.dropdown-content div:hover {
+  background-color: #b9b3b3;
+}
+
+/* Add a shadow to the dropdown menu */
+.dropdown-content {
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+}
+

@@ -1,32 +1,25 @@
-<nav class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Task App (MEAN Stack)</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-      </div>
+<nav>
+  <div class="table">
+    <ul>
+      <li class="menu" [routerLinkActive]="['active']">
+        <a [routerLink]="['/home']">Accueil</a>
+      </li>
 
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-          <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" >
-            <a [routerLink]="['/']">Accueil</a>
-          </li>
-        </ul>
+      <li>
+        <a class="menu" [routerLink]="['/Ordonnances']">Listes Ordonnances</a>
+      </li>
 
-        <ul class="nav navbar-nav navbar-right">
-          <li *ngIf="!userService.isLoggedIn()" [routerLinkActive]="['active']">
-            <a [routerLink]="['/login']">Liste Ordonnances</a>
-          </li>
-          
-          <li *ngIf="userService.isLoggedIn()">
-            <a href="#" (click)="onLogOutClicked()">Profile </a>
-          </li>
-        </ul>
-
-
-      </div><!--/.nav-collapse -->
-    </div>
+      <li class="menu" style="float:right">
+        <div class="dropdown">
+          <button class="dropbtn">{{ getInitials() }}</button>
+          <div class="dropdown-content">
+            <div><a href="#" >Profile</a></div>
+            <div><a href="#" (click)="onLogOutClicked()">Déconnexion</a></div>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </nav>
+
+

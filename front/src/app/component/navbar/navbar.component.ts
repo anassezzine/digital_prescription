@@ -24,4 +24,10 @@ export class NavbarComponent{
     this.router.navigate(['/login']);
     return false;
   }
+
+  //écrit une fonction getInitials() qui retourne les initiales de l'utilisateur connecté
+  getInitials(){
+  
+  }
+
 }

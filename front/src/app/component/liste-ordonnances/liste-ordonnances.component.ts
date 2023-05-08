@@ -9,6 +9,8 @@ import { OrdonnanceComponent } from 'src/app/component/ordonnance/ordonnance.com
 export class ListeOrdonnancesComponent {
   //créer un tableau ordonnances de type ordonnanceComponent
   ordonnances: OrdonnanceComponent[] = [];
+  selectedOrdonnanceId: number = -1; // initialiser la variable avec une valeur par défaut
+
   //ramplir le tableau ordonnances avec des données
   constructor() {
     this.ordonnances.push({
@@ -38,11 +40,15 @@ export class ListeOrdonnancesComponent {
   }
 
   //écrit la fonction onOrdonnanceClicked
-  onOrdonnanceClicked(id:Number) {
+  onOrdonnanceClicked(id:number) {
     //affiche dans la console le message "Ordonnance clicked"
     console.log("Ordonnance clicked");
     //affiche dans la console l'identifiant de l'ordonnance
     console.log(id);
+    this.selectedOrdonnanceId = id;
+    //redirige vers la page ordonnance/id
+    window.location.href = "/ordonnance/" + id; 
+  
   }
 
   

@@ -39,7 +39,7 @@ export class LoginComponent {
         }
         //console.log(resp as any);
         this.userservice.saveUserDate((resp as any).user.token, (resp as any).user.name);
-        this.router.navigate(['/main']);
+        this.router.navigate(['/home']);
       }
     );
   }
