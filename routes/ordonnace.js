@@ -44,7 +44,8 @@ router.post('/add', passport.authenticate('professionnel-jwt', { session: false 
 });
 
 // List Own Tasks for the second passport_patient strategy
-router.get('/list', passport.authenticate('patient-jwt', { session: false }), async (req, res, next) => {
+router.get('/getAllOrdonnances', passport.authenticate('patient-jwt', { session: false }), async (req, res, next) => {
+  console.log("getAllOrdonnances");
   const id_patient = req.body.id_patient;
   try {
     const ordonnance = await Ordonnance.find({ id_patient });

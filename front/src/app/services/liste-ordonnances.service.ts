@@ -15,7 +15,7 @@ export class ListeOrdonnancesService {
     }
 
     getAllOrdonnances(identifiantUser:any){
-        return this.http.get('http://localhost:3000/users/getAllOrdonnances', identifiantUser).pipe(
+        return this.http.get('http://localhost:3000/ordonnance/getAllOrdonnances', identifiantUser).pipe(
           map((resp) => {
             return resp;
           })

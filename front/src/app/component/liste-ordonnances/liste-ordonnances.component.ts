@@ -44,6 +44,7 @@ export class ListeOrdonnancesComponent {
       duree: "1 semaine",
     });
     */
+    this.displayAllOrdonnances();
   }
 
   //écrit la fonction onOrdonnanceClicked
@@ -57,11 +58,13 @@ export class ListeOrdonnancesComponent {
   displayAllOrdonnances() {
     const identifiantUser = localStorage.getItem('identifiant') ? Number(localStorage.getItem('identifiant')) : -1;
     this.listeOrdonnancesService.getAllOrdonnances(identifiantUser).subscribe((data: any) => {
+      console.log("data");
       console.log(data);
       if (data) {
         this.ordonnances = data;
       }
     });
   }
+
 
 }
