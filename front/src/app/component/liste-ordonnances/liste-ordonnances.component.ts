@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { OrdonnanceComponent } from 'src/app/component/ordonnance/ordonnance.component';
+import { ListeOrdonnancesService } from 'src/app/services/liste-ordonnances.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-liste-ordonnances',
@@ -9,10 +11,11 @@ import { OrdonnanceComponent } from 'src/app/component/ordonnance/ordonnance.com
 export class ListeOrdonnancesComponent {
   //créer un tableau ordonnances de type ordonnanceComponent
   ordonnances: OrdonnanceComponent[] = [];
-  selectedOrdonnanceId: number = -1; // initialiser la variable avec une valeur par défaut
+  static selectedOrdonnanceId: number = -1; // initialiser la variable avec une valeur par défaut
 
   //ramplir le tableau ordonnances avec des données
-  constructor() {
+  constructor(  public listeOrdonnancesService:ListeOrdonnancesService, public router :Router) {
+    /*
     this.ordonnances.push({
       id: 1,
       medecin: "Dr. John Doe",
@@ -40,19 +43,25 @@ export class ListeOrdonnancesComponent {
       posologie: "1 comprimé par jour",
       duree: "1 semaine",
     });
+    */
   }
 
   //écrit la fonction onOrdonnanceClicked
   onOrdonnanceClicked(id:number) {
-    //affiche dans la console le message "Ordonnance clicked"
-    console.log("Ordonnance clicked");
-    //affiche dans la console l'identifiant de l'ordonnance
-    console.log(id);
-    this.selectedOrdonnanceId = id;
 
-    //redirige vers la page ordonnance/id
-    window.location.href = "/ordonnance/" + id; 
-  
+    this.listeOrdonnancesService.saveOrdonnanceData(id);
+    this.router.navigate([`ordonnance/:${{id}}`]);
+    return ;
+  }
+
+  displayAllOrdonnances() {
+    const identifiantUser = localStorage.getItem('identifiant') ? Number(localStorage.getItem('identifiant')) : -1;
+    this.listeOrdonnancesService.getAllOrdonnances(identifiantUser).subscribe((data: any) => {
+      console.log(data);
+      if (data) {
+        this.ordonnances = data;
+      }
+    });
   }
 
 }

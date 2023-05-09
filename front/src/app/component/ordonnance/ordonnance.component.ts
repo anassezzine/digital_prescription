@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
 })
 export class OrdonnanceComponent {
     //rajouter les propriétés Id, Médecin, Date, Médicaments, Posologie, Durée
-    id: number=0;
+
+    id: number= localStorage.getItem('id') ? Number(localStorage.getItem('id')) : -1;
     medecin: string='';
     date: string='';
     medicaments: string='';
@@ -16,7 +17,13 @@ export class OrdonnanceComponent {
 
     //déclare une variable qui ne va pas se considérer attribut de la classe et qui va contenir le retour de la fonction getSelectedOrdonnanceId
     
+
     
-    constructor() { }    
+    constructor() {
+      
+    }    
+
+    
+
 
 };

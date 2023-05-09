@@ -15,10 +15,12 @@ import { HomeComponent } from './component/home/home.component';
 
 import { UserService } from './services/user.service';
 import { AuthGuard } from './gaurds/auth.guard';
+import {ListeOrdonnancesService} from './services/liste-ordonnances.service';
 import { ListeOrdonnancesComponent } from './component/liste-ordonnances/liste-ordonnances.component';
 import { OrdonnanceComponent } from './component/ordonnance/ordonnance.component';
 import { FooterComponent } from './component/footer/footer.component';
 import { ProfileComponent } from './component/profile/profile.component';
+import { FormOrdonnanceComponent } from './component/form-ordonnance/form-ordonnance.component';
 
 
 const AppRoutes: Routes=[
@@ -28,7 +30,8 @@ const AppRoutes: Routes=[
   {path: 'home', component:HomeComponent, canActivate:[AuthGuard]},
   {path: 'Ordonnances', component:ListeOrdonnancesComponent},
   {path: 'ordonnance/:id', component:OrdonnanceComponent},
-  {path: 'profile', component:ProfileComponent, canActivate:[AuthGuard]}
+  {path: 'profile', component:ProfileComponent, canActivate:[AuthGuard]},
+  {path: 'formOrdonnance', component:FormOrdonnanceComponent, canActivate:[AuthGuard]}
 ]
 
 @NgModule({
@@ -41,7 +44,8 @@ const AppRoutes: Routes=[
     ListeOrdonnancesComponent,
     OrdonnanceComponent,
     FooterComponent,
-    ProfileComponent
+    ProfileComponent,
+    FormOrdonnanceComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +57,7 @@ const AppRoutes: Routes=[
   providers: [
     UserService,
     AuthGuard,
+    ListeOrdonnancesService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,0 +1,47 @@
+<app-navbar></app-navbar>
+
+<h1>Créer une ordonnance</h1>
+<div class="container">
+    <form>
+        <label for="id">Id :</label>
+        <input type="text" id="id" name="id" readonly><br><br>
+
+        <label for="medecin_nom">Nom du médecin :</label>
+        <input type="text" id="medecin_nom" name="medecin_nom"><br><br>
+
+        <label for="medecin_prenom">Prénom du médecin :</label>
+        <input type="text" id="medecin_prenom" name="medecin_prenom"><br><br>
+
+        <label for="date">Date :</label>
+        <input type="text" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" readonly><br><br>
+
+        <fieldset>
+            <legend>Médicaments :</legend>
+            <div id="medicaments">
+                <div class="medicament">
+                    <label for="nom_medicament">Nom :</label>
+                    <input type="text" id="nom_medicament" name="nom_medicament[]"><br><br>
+
+                    <label>Posologie :</label><br>
+                    <input type="checkbox" id="matin" name="posologie[0][]" value="matin">
+                    <label for="matin">Matin</label>
+                    <input type="checkbox" id="midi" name="posologie[0][]" value="midi">
+                    <label for="midi">Midi</label>
+                    <input type="checkbox" id="soir" name="posologie[0][]" value="soir">
+                    <label for="soir">Soir</label><br><br>
+
+                    <label for="quantite_medicament">Quantité :</label>
+                    <input type="number" id="quantite_medicament" name="quantite_medicament[]"><br><br>
+
+                    <label for="duree_medicament">Durée :</label>
+                    <input type="number" id="duree_medicament" name="duree_medicament[]"><br><br>
+                </div>
+            </div>
+            <button type="button" onclick="ajouterMedicament()">Ajouter un médicament</button>
+        </fieldset>
+
+        <br><br>
+        <input type="submit" value="Enregistrer">
+    </form>
+</div>
+<app-footer></app-footer>

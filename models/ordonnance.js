@@ -9,11 +9,12 @@ const PrescriptionSchema = new mongoose.Schema({
     id_pro: {type :Number, required : true,  unique:false},
     id_patient: {type :Number, required : true,  unique:false},
     date: {type :Date, required : true,  unique: false},
-    medicaments: { type: Map, of: String, required: true, unique: false }
+    //medicaments: { type: Map, of: String, required: true, unique: false }
+    medicaments: { type : [String], required: true, unique: false }
 });
 
 
-PrescriptionSchema.pre('save', async function(next) {
+/*PrescriptionSchema.pre('save', async function(next) {
   try {
     console.log("save");
     console.log(this.medicaments);
@@ -35,7 +36,7 @@ PrescriptionSchema.pre('save', async function(next) {
   } catch (err) {
     next(err);
   }
-});
+});*/
 
 
 const Ordonnance= mongoose.model('Ordonnance', PrescriptionSchema);
