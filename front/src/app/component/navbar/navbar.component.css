@@ -48,7 +48,7 @@ nav a {
 }
 
 .menu:hover{
-  background-color: #87c1ed; /*la couleur de texte des liens au survol*/
+  background-color: #0fd7d7; /*la couleur de texte des liens au survol*/
 }
 
 .table {
@@ -58,7 +58,7 @@ nav a {
 
 /* Dropdown button */
 .dropbtn {
-  background-color: #87c1ed;
+  background-color: #0fd7d7;
   color: white;
   padding: 0px;
   font-size: 16px;

@@ -1,33 +1,12 @@
 .footer-basic{
-    height: 20vh; /*le footer tient sur 25% de la hauteur de la page*/
+    height: 20vh; /*le footer tient sur 20% de la hauteur de la page*/
     background-color: #424558; /*la couleur de fond du footer*/ 
-    position: absolute;
     bottom: 0;
     width: 100%;
-   
-    @media (max-width: 767px) {
-        height: 30vh;
-    }
-    @media (max-width: 991px) {
-        height: 25vh;
-    }
-    @media (max-width: 1199px) {
-        height: 20vh;
-    }
-
-    @media (min-width: 768px) {
-        width: 100%;
-    }
-    @media (min-width: 992px) {
-        width: 100%;
-    }
-    @media (min-width: 1200px) {
-        width: 100%;
-    }
-
+    margin-top: 20%;
 }
 .footer-basic li{
-padding:0 5%; 
+padding:0 5%;
 margin-left: 3%; /*pour laisser une marge avec l'élément à gauche*/
 color: #fff /* couleur du texte des liens*/
 }
@@ -39,7 +18,7 @@ opacity:0.8; /*pour l'opacité de la couleur*/
 
 .footer-basic ul a:hover {
 opacity:1; /*pour modifier l'opacité de la couleur en survolant l'élément */
-color: #87c1ed;
+color: #0fd7d7;
 }
 
 .footer-basic .social {
@@ -64,7 +43,7 @@ opacity:0.75; /*opacité de la couleur des icones*/
 
 .footer-basic .social > a:hover {
 opacity:0.9; /*pour modifier l'opacité de la couleur en survolant les icones */
-color: #87c1ed;
+color: #0fd7d7;
 }
 
 .footer-basic .copyright {
@@ -74,5 +53,3 @@ font-size:13px; /*la taille de la police*/
 color:#aaa; /* couleur du texte*/
 
 }
-   
-   
