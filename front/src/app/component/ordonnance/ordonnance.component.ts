@@ -13,8 +13,10 @@ export class OrdonnanceComponent {
     medicaments: string='';
     posologie: string='';
     duree: string='';
-    
-    constructor() { }
 
+    //déclare une variable qui ne va pas se considérer attribut de la classe et qui va contenir le retour de la fonction getSelectedOrdonnanceId
     
-}
+    
+    constructor() { }    
+
+};

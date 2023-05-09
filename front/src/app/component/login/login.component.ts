@@ -30,15 +30,13 @@ export class LoginComponent {
 
     this.userservice.auth(user).subscribe( resp => 
       {
-        /*console.log((resp as any).message);
-        return;*/
+
         if (!(resp as any).success) {
           alert((resp as any).message);
           return ;
         
         }
-        //console.log(resp as any);
-        this.userservice.saveUserDate((resp as any).user.token, (resp as any).user.name);
+        this.userservice.saveUserDate((resp as any).user.token, (resp as any).user.nom, (resp as any).user.prenom, (resp as any).user.identifiant, (resp as any).user.email, (resp as any).user.numTel);
         this.router.navigate(['/home']);
       }
     );

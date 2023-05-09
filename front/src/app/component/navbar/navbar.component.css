@@ -31,6 +31,13 @@ nav li {
   float: left;
 }
 
+nav img {
+  margin-top: -15px;
+  margin-left: 0px;
+  width: 70px;
+  height: 40px;
+}
+
 nav a {
   display: inline-block; /*Pour pouvoir cibler les liens facilement*/
   text-decoration: none; /*Pour supprimer le soulignement des liens*/
@@ -41,8 +48,7 @@ nav a {
 }
 
 .menu:hover{
-
-  background-color: #67BE4B; /*la couleur de texte des liens au survol*/
+  background-color: #87c1ed; /*la couleur de texte des liens au survol*/
 }
 
 .table {
@@ -52,7 +58,7 @@ nav a {
 
 /* Dropdown button */
 .dropbtn {
-  background-color: #4CAF50;
+  background-color: #87c1ed;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -87,7 +93,7 @@ nav a {
 
 /* Add a grey background color to dropdown links on hover */
 .dropdown-content div:hover {
-  background-color: #b9b3b3;
+  background-color: rgb(203, 196, 203);
 }
 
 /* Add a shadow to the dropdown menu */

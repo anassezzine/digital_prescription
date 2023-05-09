@@ -3,21 +3,17 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // Schema Definition
-const PatientSchema = new mongoose.Schema({
-  nom: {type :String, required : false},
-  prenom: {type :String, required : false},
-  email: { type: String, required: true, unique: true },
-  numTel: { type: Number,required: true, unique: true},
-  identifiant: {type :Number, min: 1111111111111, max: 9999999999999 , required : true, unique: true},
-  password: { type: String, required: false }
+const AdminSchema = new mongoose.Schema({
+  nom: {type :String, required : true},
+  password: { type: String, required: true }
 });
 
 //Pre Save Hook. Used to hash the password
-PatientSchema.pre('save', function(next) {
+AdminSchema.pre('save', function(next) {
 
-     if (!this.isModified('password'))  {
-       return next();
-     }
+    if (!this.isModified('password'))  {
+        return next();
+    }
 
     //Generate Salt Value
     bcrypt.genSalt(10, (err, salt) => {
@@ -38,7 +34,7 @@ PatientSchema.pre('save', function(next) {
 });
 
 //Custom method to check the password correct when login
-PatientSchema.methods.isPasswordMatch = function(plainPassword, hashed, callback) {
+AdminSchema.methods.isPasswordMatch = function(plainPassword, hashed, callback) {
   bcrypt.compare(plainPassword, hashed, (err, isMatch) => {
     if (err) {
       return callback(err);
@@ -47,6 +43,6 @@ PatientSchema.methods.isPasswordMatch = function(plainPassword, hashed, callback
   });
 }
 
-const Patient = mongoose.model('PatientSchema', PatientSchema);
+const Admin = mongoose.model('AdminSchema', AdminSchema);
 
-module.exports = Patient;
+module.exports = Admin;

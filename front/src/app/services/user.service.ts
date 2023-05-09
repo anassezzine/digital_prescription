@@ -26,9 +26,14 @@ export class UserService {
     );
   }
 
-  saveUserDate(token:any, user:any) {
+  saveUserDate(token:any, nom:any, prenom:any, identifiant:any,email:any,numTel:any) {
     localStorage.setItem("authToken", token);
-    localStorage.setItem("nameUser", (user));
+    localStorage.setItem("nom", (nom));
+    localStorage.setItem("prenom", (prenom));
+    localStorage.setItem("identifiant", (identifiant));
+    localStorage.setItem("email", (email));
+    localStorage.setItem("numTel", (numTel));
+
   }
 
   isLoggedIn() :boolean {
@@ -38,8 +43,6 @@ export class UserService {
   }
 
   logOut() {
-    //localStorage.removeItem("authToken");
-    //localStorage.removeItem("nameUser");
     localStorage.clear();
   }
 
@@ -47,7 +50,12 @@ export class UserService {
     if (this.isLoggedIn()) {
       const user = {
         authToken: localStorage.getItem("authToken"),
-        nameUser: localStorage.getItem("nameUser")
+        nom: localStorage.getItem("nom"),
+        prenom: localStorage.getItem("prenom"),
+        identifiant: localStorage.getItem("identifiant"),
+        email: localStorage.getItem("email"),
+        numTel: localStorage.getItem("numTel")
+        
       };
       return user;
     }

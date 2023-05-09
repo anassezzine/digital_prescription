@@ -1,0 +1,12 @@
+.user-container {
+
+    margin-left: 30%;
+    margin-right: 20%;
+    margin-top: 15%;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #ccc;
+    background-color: rgb(203, 196, 203);
+}
+  

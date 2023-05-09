@@ -1,59 +1,70 @@
 body{
     background: #67BE4B;
-   }
-   #container{
-    width:500px;
-    margin-left:5%;
-    margin-top:1%;
-    margin-bottom: 1%;
-   }
-   /* Bordered form */
-   form {
-    width:100%;
-    padding: 30px;
-    border: 1px solid #f1f1f1;
-    background: #fff;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-   }
-   #container h1{
-    width: auto;
-    margin-left: 18%;
-    padding-bottom: 10px;
-   }
-   
-   /* Full-width inputs */
-   input[type=text], input[type=password], input[type=email],input[type=tel] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-   }
-   
-   /* Set a style for all buttons */
-   input[type=submit] {
-    background-color: #53af57;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-   }
+}
 
-   button{
-    background-color: #53af57;
-    color: white;
-    padding: 14px 20px;
+#back-btn {
+    position: absolute; /* Set absolute positioning for back button */
+    display: inline-block;
+    padding: 10px;
+    color: #67BE4B;
+    font-size: 20px;
+    text-decoration: none;
     margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-   }
-   
-   input[type=submit]:hover {
-    background-color: white;
-    color: #53af57;
-    border: 1px solid #53af57;
-   }
+}
+
+#container{
+width:500px;
+margin-left:5%;
+margin-top:1%;
+margin-bottom: 1%;
+}
+/* Bordered form */
+form {
+width:100%;
+padding: 30px;
+border: 1px solid #f1f1f1;
+background: #fff;
+box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+#container h1{
+width: auto;
+margin-left: 18%;
+padding-bottom: 10px;
+}
+
+/* Full-width inputs */
+input[type=text], input[type=password], input[type=email],input[type=tel] {
+width: 100%;
+padding: 14px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+input[type=submit] {
+background-color: #53af57;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+cursor: pointer;
+width: 100%;
+}
+
+button{
+background-color: #53af57;
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+cursor: pointer;
+width: 100%;
+}
+
+input[type=submit]:hover {
+background-color: white;
+color: #53af57;
+border: 1px solid #53af57;
+}

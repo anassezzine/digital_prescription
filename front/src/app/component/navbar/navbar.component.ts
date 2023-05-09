@@ -14,8 +14,7 @@ export class NavbarComponent{
     public router :Router
 
   ) {
-    //const currentUser = this.userService.getUserName();
-    //console.log(currentUser);
+    
    }
 
 
@@ -26,8 +25,24 @@ export class NavbarComponent{
   }
 
   //écrit une fonction getInitials() qui retourne les initiales de l'utilisateur connecté
-  getInitials(){
+  getInitials() {
+    const currentUser = this.userService.getLoggedInUser();
   
+    if (currentUser) { // check if currentUser is not null
+      if (currentUser.nom && currentUser.prenom) { // check if currentUser.nom is not null
+        console.log(currentUser);
+        return currentUser.nom.charAt(0).toUpperCase()+currentUser.prenom.charAt(0).toUpperCase();
+      }
+    }
+    return '';
+  }
+  
+
+  //une fonction onProfileClicked() qui redirige vers la page profile
+
+  onProfileClicked(){
+    this.router.navigate(['/profile']);
+    return false;
   }
 
 }

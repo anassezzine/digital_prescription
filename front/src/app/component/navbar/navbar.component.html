@@ -1,6 +1,9 @@
 <nav>
   <div class="table">
     <ul>
+      <li id="logo">
+        <a  [routerLink]="['/home']"> <img src="assets/logo.png" alt="logo" width="50" height="45"></a>
+      </li>
       <li class="menu" [routerLinkActive]="['active']">
         <a [routerLink]="['/home']">Accueil</a>
       </li>
@@ -9,12 +12,12 @@
         <a class="menu" [routerLink]="['/Ordonnances']">Listes Ordonnances</a>
       </li>
 
-      <li class="menu" style="float:right">
+      <li style="float:right">
         <div class="dropdown">
           <button class="dropbtn">{{ getInitials() }}</button>
           <div class="dropdown-content">
-            <div><a href="#" >Profile</a></div>
-            <div><a href="#" (click)="onLogOutClicked()">Déconnexion</a></div>
+            <div><a  (click)="onProfileClicked()">Profile</a></div>
+            <div><a  (click)="onLogOutClicked()">Déconnexion</a></div>
           </div>
         </div>
       </li>

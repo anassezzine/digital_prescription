@@ -1,25 +1,43 @@
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
-const User = require('../models/patient');
+const passportJWT = require("passport-jwt");
+const JwtStrategy = passportJWT.Strategy;
+const ExtractJwt = passportJWT.ExtractJwt;
+const Patient = require('../models/patient');
+const Professionnel = require('../models/professionnel');
 
+module.exports = function(passport) {
+  // Configuration for patient authentication
+  const patient_opts = {
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: process.env.PATIENT_SECRET,
+  };
 
+  passport.use('patient-jwt', new JwtStrategy(patient_opts, async (jwt_payload, done) => {
+    try {
+      const user = await Patient.findById(jwt_payload.user._id);
+      if (user) {
+        return done(null, user);
+      }
+      return done(null, false);
+    } catch (err) {
+      return done(err, false);
+    }
+  }));
 
-module.exports = async function (passport) {
-    const opts = {
-        jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-        secretOrKey: process.env.SECRET,
-    };
+  // Configuration for Professionnel authentication
+  const professionnel_opts = {
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: process.env.PROFESSIONNEL_SECRET,
+  };
 
-    passport.use(new JwtStrategy(opts, async (jwt_payload, done) => {
-        try {
-            
-            const user = await User.findById(jwt_payload.patient._id);
-            if (user) {
-                return done(null, user);
-            }
-            return done(null, false);
-        } catch (err) {
-            return done(err, false);
-        }
-    }));
-}
+  passport.use('professionnel-jwt', new JwtStrategy(professionnel_opts, async (jwt_payload, done) => {
+    try {
+      const user = await Professionnel.findById(jwt_payload.user._id);
+      if (user) {
+        return done(null, user);
+      }
+      return done(null, false);
+    } catch (err) {
+      return done(err, false);
+    }
+  }));
+};

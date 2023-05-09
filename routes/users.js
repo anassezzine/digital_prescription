@@ -10,7 +10,9 @@ router.post('/auth', (req, res, next) => {
   const password = req.body.password;
 
   const query = {identifiant}
-  //Check the user exists
+  if ((req.body.identifiant).toString().length==13)
+  {  
+    //Check the user exists
     Patient.findOne(query)
     .then((user) => {
         if (!user) {
@@ -32,7 +34,7 @@ router.post('/auth', (req, res, next) => {
         const ONE_MOUNTH = 2592000; //Token validtity in seconds
 
         //Generating the token
-        const token = jwt.sign({ user }, process.env.SECRET, { expiresIn: ONE_MOUNTH });
+        const token = jwt.sign({ user }, process.env.PATIENT_SECRET, { expiresIn: ONE_MOUNTH });
         
         //User Is Valid
         //This object is just used to remove the password from the retuned fields
@@ -59,17 +61,67 @@ router.post('/auth', (req, res, next) => {
       message: 'Error, please try again'
     });
   });
-
+  }else if ((req.body.identifiant).toString().length==11){  
+    //Check the user exists
+    Professionnel.findOne(query)
+      .then((user) => {
+          if (!user) {
+              return res.send({
+              success: false,
+              message: 'Error, Account not found'
+              });
+          } else {
+            //Check if the password is correct
+            user.isPasswordMatch(password, user.password, (err, isMatch) => {
+              if (!isMatch) {
+                return res.send({
+                success: false,
+                message: 'Error, Invalid Password'
+              });
+          }
+          //User is Valid
+  
+          const ONE_MOUNTH = 2592000; //Token validtity in seconds
+  
+          //Generating the token
+          const token = jwt.sign({ user }, process.env.PROFESSIONNEL_SECRET, { expiresIn: ONE_MOUNTH });
+          
+          //User Is Valid
+          //This object is just used to remove the password from the retuned fields
+          let userinfo= {
+            nom: user.nom,
+            prenom: user.prenom,
+            numTel:user.numTel,
+            email: user.email,
+            identifiant:user.identifiant,
+            token
+          }
+          //Send the response back
+          return res.send({
+            success: true,
+            message: 'You can login now',
+            user:userinfo
+          });
+        });
+      }
+    })
+    .catch((err) => {
+      reject({
+        success: false,
+        message: 'Error, please try again'
+      });
+    });
+  }
 });
 
 
 //Registeration
 router.post('/register', (req, res, next) => {
-  console.log((req.body.identifiant).toString().length);
+ // console.log((req.body.identifiant).toString().length);
   //get the lenth of req.body.numeroSecu?
 
   if ((req.body.identifiant).toString().length==13){
-    console.log("hi")
+  
     let newPatient = new Patient({
         nom: req.body.nom,
         prenom:req.body.prenom,
@@ -95,12 +147,12 @@ router.post('/register', (req, res, next) => {
     });
 
 
-  }else if((req.body.identifiant).toString().length==13){
+  }else if((req.body.identifiant).toString().length==11){
 
 
     let newPro = new Professionnel({
       nom: req.body.nom,
-      pre:req.body.lastName,
+      prenom:req.body.prenom,
       email: req.body.email,
       numTel:req.body.numTel,
       identifiant:req.body.identifiant,

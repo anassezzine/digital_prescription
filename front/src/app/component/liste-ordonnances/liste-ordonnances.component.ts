@@ -19,7 +19,8 @@ export class ListeOrdonnancesComponent {
       date: "13/02/2023",
       medicaments: "Doliprane",
       posologie: "1 comprimé par jour",
-      duree: "1 semaine"
+      duree: "1 semaine",
+
     });
     this.ordonnances.push({
       id: 2,
@@ -27,7 +28,9 @@ export class ListeOrdonnancesComponent {
       date: "25/02/2023",
       medicaments: "Doliprane",
       posologie: "1 comprimé par jour",
-      duree: "1 semaine"
+      duree: "1 semaine",
+
+
     });
     this.ordonnances.push({
       id: 3,
@@ -35,7 +38,7 @@ export class ListeOrdonnancesComponent {
       date: "02/03/2023",
       medicaments: "Doliprane",
       posologie: "1 comprimé par jour",
-      duree: "1 semaine"
+      duree: "1 semaine",
     });
   }
 
@@ -46,12 +49,10 @@ export class ListeOrdonnancesComponent {
     //affiche dans la console l'identifiant de l'ordonnance
     console.log(id);
     this.selectedOrdonnanceId = id;
+
     //redirige vers la page ordonnance/id
     window.location.href = "/ordonnance/" + id; 
   
   }
-
-  
-
 
 }

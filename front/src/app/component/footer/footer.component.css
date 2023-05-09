@@ -39,7 +39,7 @@ opacity:0.8; /*pour l'opacité de la couleur*/
 
 .footer-basic ul a:hover {
 opacity:1; /*pour modifier l'opacité de la couleur en survolant l'élément */
-color: #67BE4B;
+color: #87c1ed;
 }
 
 .footer-basic .social {
@@ -64,7 +64,7 @@ opacity:0.75; /*opacité de la couleur des icones*/
 
 .footer-basic .social > a:hover {
 opacity:0.9; /*pour modifier l'opacité de la couleur en survolant les icones */
-color: #67BE4B;
+color: #87c1ed;
 }
 
 .footer-basic .copyright {

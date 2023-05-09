@@ -18,6 +18,7 @@ import { AuthGuard } from './gaurds/auth.guard';
 import { ListeOrdonnancesComponent } from './component/liste-ordonnances/liste-ordonnances.component';
 import { OrdonnanceComponent } from './component/ordonnance/ordonnance.component';
 import { FooterComponent } from './component/footer/footer.component';
+import { ProfileComponent } from './component/profile/profile.component';
 
 
 const AppRoutes: Routes=[
@@ -26,7 +27,8 @@ const AppRoutes: Routes=[
   {path: 'login', component:LoginComponent},
   {path: 'home', component:HomeComponent, canActivate:[AuthGuard]},
   {path: 'Ordonnances', component:ListeOrdonnancesComponent},
-  {path: 'ordonnance/:id', component:OrdonnanceComponent}
+  {path: 'ordonnance/:id', component:OrdonnanceComponent},
+  {path: 'profile', component:ProfileComponent, canActivate:[AuthGuard]}
 ]
 
 @NgModule({
@@ -38,7 +40,8 @@ const AppRoutes: Routes=[
     HomeComponent,
     ListeOrdonnancesComponent,
     OrdonnanceComponent,
-    FooterComponent
+    FooterComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
