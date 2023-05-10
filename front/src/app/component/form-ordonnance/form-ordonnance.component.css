@@ -4,8 +4,7 @@
     padding: 20px;
     margin: 20% -100px 100px auto; /* Utilisation de margin: % valeur auto pour centrer le formulaire */
     overflow: hidden;
-    width: 80%; /* Modification de la largeur du formulaire */
-    
+    width: 80%; /* Modification de la largeur du formulaire */  
   }
   
   /* En-tête */
@@ -63,20 +62,29 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
   
   /* Medicament label */
   .medicament label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: normal;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: bold;
+  }
+
+  .medicament input[type="text"],input[type="number"] {
+    display: inline-block;
+    width: 100%;
+    margin-top: px;
   }
   .posologie label {
     display: inline;
     margin-right: 10px;
     display:flex;
     flex-wrap: wrap;
+    font-weight: normal;
+
   }
   /* Ajouter medicament */
   button[type="button"] {
@@ -105,4 +113,47 @@
   .remove:hover {
     color: #ff0000;
   }
+
+
+  /* Checkbox square */
+.checkbox-square {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ccc;
+  margin-right: 5px;
+}
+
+/* Ajouter medicament */
+button.ajouter-medicament-button {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #0fd7d7;
+  color: white;
+  cursor: pointer;
+}
+
+
+/* Ajouter medicament:hover */
+button.ajouter-medicament-button:hover {
+  background-color: #08bdbd;
+}
+
+/* Remove medicament */
+button.supprimer-medicament-button {
+  font-size: 16px;
+  color: #ff4500;
+  cursor: pointer;
+}
+
+/* Remove medicament:hover */
+button.supprimer-medicament-button:hover {
+  color: #ff0000;
+}
+
+
+
+
   
