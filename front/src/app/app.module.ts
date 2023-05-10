@@ -28,8 +28,8 @@ const AppRoutes: Routes=[
   {path: 'register', component:RegisterComponent},
   {path: 'login', component:LoginComponent},
   {path: 'home', component:HomeComponent, canActivate:[AuthGuard]},
-  {path: 'Ordonnances', component:ListeOrdonnancesComponent},
-  {path: 'ordonnance/:id', component:OrdonnanceComponent},
+  {path: 'Ordonnances', component:ListeOrdonnancesComponent, canActivate:[AuthGuard]},
+  {path: 'ordonnance', component:OrdonnanceComponent, canActivate:[AuthGuard]},
   {path: 'profile', component:ProfileComponent, canActivate:[AuthGuard]},
   {path: 'formOrdonnance', component:FormOrdonnanceComponent, canActivate:[AuthGuard]}
 ]

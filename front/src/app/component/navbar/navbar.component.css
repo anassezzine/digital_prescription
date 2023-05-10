@@ -4,6 +4,8 @@ nav {
   display: flex;
   position:absolute;
   top: 0%;
+  left: 0%;
+  margin-bottom: 50%;
 
   @media (max-width: 767px) {
       height: 30vh;
@@ -72,7 +74,7 @@ nav a {
 
   width: 50px;
   height: 50px;
-  
+ 
 }
 
 /* Dropdown content (hidden by default) */
@@ -100,4 +102,3 @@ nav a {
 .dropdown-content {
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-

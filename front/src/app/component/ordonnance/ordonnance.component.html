@@ -1,4 +1,19 @@
-<p>ID de l'ordonnance sélectionnée : {{ id }}</p>
+<app-navbar></app-navbar>
+<div class="ordonnance">
+    <h1 class="titre">Ordonnance : {{ id }}</h1>
+  
+    <ul>
+      <li><span class="medicament">Médicaments :</span> {{ medicaments }}</li>
+      <li><span class="posologie">Posologie :</span> {{ posologie }}</li>
+      <li><span class="duree">Durée :</span> {{ duree }}</li>
+    </ul>
+  
+    <p class="medecin">Prescription établie par le Dr {{ medecin }}</p>
+    <p class="date">Le {{ date }}</p>
+</div>
+
+<app-footer></app-footer>
+
 <!--
 <ng-container *ngIf="getSelectedOrdonnance()">
   <p>Médecin : {{ getSelectedOrdonnance().medecin }}</p>
