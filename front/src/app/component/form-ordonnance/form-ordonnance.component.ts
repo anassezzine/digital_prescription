@@ -23,15 +23,27 @@ export class FormOrdonnanceComponent {
   
     const boutonAjouter = document.createElement('button');
     boutonAjouter.textContent = "Ajouter un médicament";
-    boutonAjouter.className = "ajouter-medicament-button";
-    
-    boutonAjouter.classList.add("ajouter-medicament-button");
+    boutonAjouter.style.padding = "5px 10px";
+    boutonAjouter.style.borderRadius = "5px";
+    boutonAjouter.style.border = "none";
+    boutonAjouter.style.backgroundColor = "#0fd7d7";
+    boutonAjouter.style.color = "white";
+    boutonAjouter.addEventListener('mouseover', () => boutonAjouter.style.backgroundColor = " #08bdbd");
+    boutonAjouter.addEventListener('mouseout', () => boutonAjouter.style.backgroundColor = "#0fd7d7");
+    boutonAjouter.style.cursor = "pointer"
     boutonAjouter.addEventListener('click', () => this.ajouterMedicament());
   
     const boutonSupprimer = document.createElement('button');
     boutonSupprimer.textContent = "Supprimer ce médicament";
-    boutonSupprimer.className = "supprimer-medicament-button";
-    boutonSupprimer.classList.add("supprimer-medicament-button");
+    boutonSupprimer.style.padding = "5px 10px";
+    boutonSupprimer.style.borderRadius = "5px";
+    boutonSupprimer.style.border = "none";
+    boutonSupprimer.style.marginLeft = "1%";
+    boutonSupprimer.style.backgroundColor = "#f45454";
+    boutonSupprimer.style.color = "white";
+    boutonSupprimer.addEventListener('mouseover', () => boutonSupprimer.style.backgroundColor = "rgb(191, 32, 32)");
+    boutonSupprimer.addEventListener('mouseout', () => boutonSupprimer.style.backgroundColor = "#f45454");
+    boutonSupprimer.style.cursor = "pointer";
     boutonSupprimer.addEventListener('click', (event) => this.supprimerMedicament(event));
   
     nouveauMedicament.appendChild(boutonAjouter);

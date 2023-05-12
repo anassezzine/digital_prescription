@@ -1,3 +1,4 @@
+/*
 .user-container {
 
     margin-left: 30%;
@@ -10,4 +11,58 @@
     box-shadow: 0 0 10px #ccc;
     background-color: rgb(203, 196, 203);
 }
+*/
+input[type=text],input[type=tel],input[type=email],#pays_up,textarea{
+    width: 100%; /*l'entrée tient sur 100% de la largeur de son élément parent*/
+    padding: 12px; /* l'espace entre le texte et les bordures du conteneur*/
+    border: 1px solid aqua; /*la taille, l'épaisseur et la couleur de la bordure*/
+    border-radius: 10px; /*pour courber les angles du conteneur*/
   
+  }
+  
+  label{
+    padding: 12px 12px 12px 12; /* l'espace entre le texte et les bordures du conteneur*/
+    display: inline-block; /* pour permettre de rajouter les input sur la meme ligne*/
+    font-weight: bold;
+    margin-left: 5%;
+  }
+  
+  button[type=submit]{ /*boutton pour soumettre le formulaire*/
+    background-color: rgb(77, 180, 180); /*la couleur du fond*/
+    color: white; /*la couleur du texte*/
+    padding: 12px 20px ; /* l'espace entre le texte et les bordures du conteneur*/
+    border: none; /*pour enlever la bordure*/
+    border-radius: 10px; /*pour courber les angles du conteneur*/
+    margin-top: 10px; /*pour laisser une marge avec l'élément précédent en haut*/ 
+    margin-left: 5%;
+  }
+  
+  input[type=submit]:hover{
+    background-color:#0070bb; /*la couleur du fond en survolant le boutton*/
+  }
+  .formulaire{
+    border-radius: 5px; /*pour courber les angles du conteneur*/
+    background-color:rgb(187, 201, 202); /*la couleur du fond pour le conteneur du formulaire*/
+    padding: 20px; /* l'espace entre le contenu et les bordures du conteneur*/
+    margin-bottom: 10%;
+    margin-top: 100px;
+    margin-left: 15%;
+  }
+  
+  .row-left{  /*la partie gauche du formulaire(les labels)*/
+    float: left; /*pour se mettre le plus à gauche possible */
+    width: 25%;  /*elle tient sur 25% de la largeur de son élément parent(le formulaire)*/
+    margin-top: 6px; /*pour laisser une marge avec l'élément précédent en haut*/
+  }
+  
+  .row-right{ /*la partie droite du formulaire(les inputs)*/
+    float: left; /*pour se mettre le plus à gauche possible */
+    width: 70%; /*elle tient sur 70% de la largeur de son élément parent(le formulaire)*/
+    margin-top: 6px; /*pour laisser une marge avec l'élément précédent en haut*/
+  }
+  
+  .row:after{  /*pour éviter que les éléments collapsent*/
+    content: "";
+    display: table;
+    clear: both;
+  }

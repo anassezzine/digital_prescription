@@ -1,25 +1,25 @@
 const express = require('express');
 const passport = require('passport');
-//const passport_professionnel = require('passport');
 const router = express.Router();
 const Ordonnance = require('../models/ordonnance.js');
 
 // Add New Task (Todo) for the passport_pro strategy
 router.post('/add', passport.authenticate('professionnel-jwt', { session: false }), (req, res, next) => {
 
-  const medicamentsMap = new Map();
-  console.log(req.body.medicaments);
-  req.body.medicaments.forEach(medicament => {
-    console.log(medicament)
+  //const medicamentsMap = new Map();
+  
+  //req.body.medicaments.forEach(medicament => {
+    //console.log(medicament)
     //const [name, frequency] = Object.entries(medicament)[0];
     //medicamentsMap.set(name, frequency);
-  });
-  console.log(medicamentsMap);
+ // });
+  //console.log(medicamentsMap);
+  
   const ordonnance = new Ordonnance({
     id_pro: req.body.id_pro,
     id_patient: req.body.id_patient,
     date: new Date().toJSON().slice(0, 10),
-    medicaments: medicamentsMap
+    medicaments:req.body.medicaments
   })
   console.log(ordonnance);
   
@@ -44,8 +44,8 @@ router.post('/add', passport.authenticate('professionnel-jwt', { session: false 
 });
 
 // List Own Tasks for the second passport_patient strategy
-router.get('/getAllOrdonnances', passport.authenticate('patient-jwt', { session: false }), async (req, res, next) => {
-  console.log("getAllOrdonnances");
+router.post('/getAllOrdonnances', passport.authenticate('patient-jwt', { session: false }), async (req, res, next) => {
+  
   const id_patient = req.body.id_patient;
   try {
     const ordonnance = await Ordonnance.find({ id_patient });

@@ -30,7 +30,6 @@ export class NavbarComponent{
   
     if (currentUser) { // check if currentUser is not null
       if (currentUser.nom && currentUser.prenom) { // check if currentUser.nom is not null
-        console.log(currentUser);
         return currentUser.nom.charAt(0).toUpperCase()+currentUser.prenom.charAt(0).toUpperCase();
       }
     }

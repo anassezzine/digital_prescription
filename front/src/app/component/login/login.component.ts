@@ -46,8 +46,6 @@ export class LoginComponent {
   onClickRegister(){
     console.log("register");
     this.router.navigate(['/register']);
-  }
-
-  
+  }  
 }
 

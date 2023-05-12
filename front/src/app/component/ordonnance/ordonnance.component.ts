@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 export class OrdonnanceComponent {
     //rajouter les propriétés Id, Médecin, Date, Médicaments, Posologie, Durée
 
-    id: number= localStorage.getItem('id') ? Number(localStorage.getItem('id')) : -1;
-    medecin: string='';
+    _id: string= this.getidordonnace();
+    medecin: string='ftftft';
     date: string='';
     medicaments: string='';
     posologie: string='';
@@ -18,8 +18,12 @@ export class OrdonnanceComponent {
     //déclare une variable qui ne va pas se considérer attribut de la classe et qui va contenir le retour de la fonction getSelectedOrdonnanceId
       
     constructor() {
-      
-    }    
+      this.getidordonnace();
+    }   
+    getidordonnace(): string{
+      return localStorage.getItem('_id')||'';
+    }
+    
 };
 
 /*

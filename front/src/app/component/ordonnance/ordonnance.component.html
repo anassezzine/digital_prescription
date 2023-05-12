@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="ordonnance">
-    <h1 class="titre">Ordonnance : {{ id }}</h1>
+    <h1 class="titre">Ordonnance : {{ _id }}</h1>
   
     <ul>
       <li><span class="medicament">Médicaments :</span> {{ medicaments }}</li>
@@ -14,13 +14,3 @@
 
 <app-footer></app-footer>
 
-<!--
-<ng-container *ngIf="getSelectedOrdonnance()">
-  <p>Médecin : {{ getSelectedOrdonnance().medecin }}</p>
-  <p>Date : {{ getSelectedOrdonnance().date }}</p>
-  <p>Médicaments : {{ getSelectedOrdonnance().medicaments }}</p>
-  <p>Posologie : {{ getSelectedOrdonnance().posologie }}</p>
-  <p>Durée : {{ getSelectedOrdonnance().duree }}</p>
-</ng-container>
-
--->

@@ -1,14 +1,52 @@
 <app-navbar></app-navbar>
-
-<div class="user-container">
-    <h2>Profil utilisateur</h2>
-  
-    <p><strong>Nom :</strong> {{ user.nom }}</p>
-    <p><strong>Prénom :</strong> {{ user.prenom }}</p>
-    <p><strong>Identifiant :</strong> {{ user.identifiant }}</p>
-    <p><strong>Email :</strong> {{ user.email }}</p>
-    <p><strong>Numéro de téléphone :</strong> {{ user.numTel }}</p>
-  </div>
+<div class="formulaire">
+  <form id="formUpdateCustomer" (submit)="onClickUpdateProfile()">
+    <div class="row">
+      <div class="row-left">
+        <label for="nom">Nom :</label>
+      </div>
+      <div class="row-right">
+        <input type="text" id="nom_up" name="nom" placeholder="Nom client ..." [(ngModel)]="nom">
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-left">
+        <label for="prenom">Prénom :</label>
+      </div>
+      <div class="row-right">
+        <input type="text" id="prenom_up" name="prenom" placeholder="Prénom client..." [(ngModel)]="prenom">
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-left">
+        <label for="identifiant">Identifiant:</label>
+      </div>
+      <div class="row-right">
+        <input type="text" id="identifiant_up" name="identifiant" placeholder="Identifiant client..." [(ngModel)]="identifiant">
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-left">
+        <label for="mail">Adresse e-mail:</label>
+      </div>
+      <div class="row-right">
+        <input type="email" id="mail_up" name="mail" placeholder="adressemail@gmail.com" [(ngModel)]="email">
+      </div>
+    </div>
+    <div class="row">
+      <div class="row-left">
+        <label for="tel">Numéro de téléphone :</label>
+      </div>
+      <div class="row-right">
+        <input type="tel" id="tel_up" name="tel" placeholder="06 98 74 12 56" [(ngModel)]="numTel">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <button type="submit" name="enregister">Sauvegarder les modifications</button>
+      </div>
+    </div>
+  </form>
+</div>
 
 <app-footer></app-footer>
-  

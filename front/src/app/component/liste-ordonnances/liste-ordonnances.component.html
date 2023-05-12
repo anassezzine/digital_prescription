@@ -10,11 +10,11 @@
     </thead>
     <tbody>
         <tr *ngFor="let ordonnance of ordonnances">
-            <td>{{ ordonnance.id }}</td>
+            <td>{{ ordonnance._id }}</td>
             <td>{{ ordonnance.medecin }}</td>
             <td>{{ ordonnance.date }}</td>
             <td>
-                <button (click)="onOrdonnanceClicked(ordonnance.id)">Voir</button>
+                <button (click)="onOrdonnanceClicked(ordonnance._id)">Voir</button>
             </td>
         
     </tbody>

@@ -26,6 +26,14 @@ export class UserService {
     );
   }
 
+  updateUserProfile(user:any){
+    return this.http.post('http://localhost:3000/users/updateUserInfo', user).pipe(
+      map((resp) => {
+        return resp;
+      })
+    );
+  }
+
   saveUserDate(token:any, nom:any, prenom:any, identifiant:any,email:any,numTel:any) {
     localStorage.setItem("authToken", token);
     localStorage.setItem("nom", (nom));
@@ -61,5 +69,4 @@ export class UserService {
     }
     return null;
   }
-
 }

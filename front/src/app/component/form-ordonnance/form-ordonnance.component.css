@@ -52,7 +52,7 @@
     margin-top: 20px;
     border-radius: 5px;
     border: none;
-    background-color: #0fd7d7;
+    background-color: #4f534f;
     color: white;
     cursor: pointer;
   }
@@ -87,33 +87,20 @@
 
   }
   /* Ajouter medicament */
-  button[type="button"] {
-    font-size: 16px;
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #0fd7d7;
-    color: white;
-    cursor: pointer;
-  }
-  
-  /* Ajouter medicament:hover */
-  button[type="button"]:hover, input[type="submit"]:hover {
-    background-color: #08bdbd;
-  }
-  
-  /* Remove medicament */
-  .remove {
-    font-size: 16px;
-    color: #ff4500;
-    cursor: pointer;
-  }
-  
-  /* Remove medicament:hover */
-  .remove:hover {
-    color: #ff0000;
-  }
+button[type="button"] {
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #0fd7d7;
+  color: white;
+  cursor: pointer;
+}
 
+/* Ajouter medicament:hover */
+button[type="button"]:hover, input[type="submit"]:hover {
+  background-color: #08bdbd;
+}
 
   /* Checkbox square */
 .checkbox-square {
@@ -124,34 +111,8 @@
   margin-right: 5px;
 }
 
-/* Ajouter medicament */
-button.ajouter-medicament-button {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  border: none;
-  background-color: #0fd7d7;
-  color: white;
-  cursor: pointer;
-}
 
 
-/* Ajouter medicament:hover */
-button.ajouter-medicament-button:hover {
-  background-color: #08bdbd;
-}
-
-/* Remove medicament */
-button.supprimer-medicament-button {
-  font-size: 16px;
-  color: #ff4500;
-  cursor: pointer;
-}
-
-/* Remove medicament:hover */
-button.supprimer-medicament-button:hover {
-  color: #ff0000;
-}
 
 
 
