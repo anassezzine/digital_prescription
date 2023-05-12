@@ -1,14 +1,15 @@
 //Medicament Model
 const mongoose = require('mongoose');
 
-
-// Schema Definition
 const MedicamentSchema = new mongoose.Schema({
-    MedicamentName: {type :String, required : true,  unique: true},
-    id: {type :Number, required : true,  unique: true},
-    ordonnanceid: {type :Number, required : true,  unique: true},
-    posologie: {type :String, required : true,  unique: false},
-});
+    nom: { type: String, required: true },
+    duree: { type: String, required: true },
+    quantite: {
+      matin: { type: Number, required: true },
+      midi: { type: Number, required: true },
+      soir: { type: Number, required: true }
+    }
+  });
 
 const Medicament= mongoose.model('MedicamentSchema', MedicamentSchema);
 

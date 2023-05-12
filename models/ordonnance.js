@@ -1,17 +1,25 @@
-//Ordonnance Model
+// Ordonnance Model
 const mongoose = require('mongoose');
-const Medicament = require('./listmedicament');
-
 
 // Schema Definition
-const PrescriptionSchema = new mongoose.Schema({
-    /*id: {type :Number, required : true,  unique: false},*/
-    id_pro: {type :Number, required : true,  unique:false},
-    id_patient: {type :Number, required : true,  unique:false},
-    date: {type :Date, required : true,  unique: false},
-    //medicaments: { type: Map, of: String, required: true, unique: false }
-    medicaments: { type : [String], required: true, unique: false }
+const OrdonnanceSchema = new mongoose.Schema({
+  id_pro: { type: String, required: true },
+  id_patient: { type: String, required: true },
+  date: { type: Date, default: Date.now },
+  medicaments: [{
+    nom: { type: String, required: true },
+    duree: { type: String, required: true },
+    quantite: {
+      matin: { type: Number, required: true },
+      midi: { type: Number, required: true },
+      soir: { type: Number, required: true }
+    }
+  }]
 });
+
+const Ordonnance = mongoose.model('Ordonnance', OrdonnanceSchema);
+
+module.exports = Ordonnance;
 
 
 /*PrescriptionSchema.pre('save', async function(next) {
@@ -37,8 +45,3 @@ const PrescriptionSchema = new mongoose.Schema({
     next(err);
   }
 });*/
-
-
-const Ordonnance= mongoose.model('Ordonnance', PrescriptionSchema);
-
-module.exports = Ordonnance;

@@ -4,35 +4,47 @@ const router = express.Router();
 const Ordonnance = require('../models/ordonnance.js');
 const{ObjectId} = require('mongodb');
 
-// Add New Task (Todo) for the passport_pro strategy
-router.post('/add', passport.authenticate('professionnel-jwt', { session: false }), (req, res, next) => {
+// Middleware pour parser les données JSON
+router.use(express.json());
+
+// Middleware pour parser les données x-www-form-urlencoded
+router.use(express.urlencoded({ extended: true }));
+
+// créer et ajouter une nouvelle ordonnance
+router.post('/add', (req, res, next) => {
   const ordonnance = new Ordonnance({
     id_pro: req.body.id_pro,
     id_patient: req.body.id_patient,
-    date: new Date().toJSON().slice(0, 10),
-    medicaments:req.body.medicaments
-  })
+    medicaments: req.body.medicaments
+  });
+
   console.log(ordonnance);
-  
+
+  if (ordonnance.medicaments.length === 0) {
+    res.send({
+      success: false,
+      message: 'La liste de médicaments est vide.'
+    });
+    return;
+  }
 
   ordonnance.save()
     .then(ordonnance => {
       res.send({
         success: true,
         ordonnance,
-        message: 'ordonnance Saved'
+        message: 'Ordonnance enregistrée avec succès.'
       });
     })
     .catch(err => {
-      // throw err;
       res.send({
         success: false,
-        message: 'Error while saving, pelase try again',
+        message: 'Erreur lors de l enregistrement de l ordonnance. Veuillez réessayer.',
         err: err
       });
     });
-
 });
+
 
 // List Own Tasks for the second passport_patient strategy
 router.post('/getAllOrdonnances', passport.authenticate('patient-jwt', { session: false }), async (req, res, next) => {
