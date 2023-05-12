@@ -8,8 +8,12 @@
         <a [routerLink]="['/home']">Accueil</a>
       </li>
 
-      <li>
+      <li *ngIf="userService.isLoggedInPatient()">
         <a class="menu" [routerLink]="['/Ordonnances']">Listes Ordonnances</a>
+      </li>
+
+      <li *ngIf="userService.isLoggedInPro()">
+        <a class="menu" [routerLink]="['/formOrdonnance']">Création Ordonnance</a>
       </li>
 
       <li style="float:right">

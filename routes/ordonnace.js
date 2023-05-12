@@ -5,16 +5,6 @@ const Ordonnance = require('../models/ordonnance.js');
 
 // Add New Task (Todo) for the passport_pro strategy
 router.post('/add', passport.authenticate('professionnel-jwt', { session: false }), (req, res, next) => {
-
-  //const medicamentsMap = new Map();
-  
-  //req.body.medicaments.forEach(medicament => {
-    //console.log(medicament)
-    //const [name, frequency] = Object.entries(medicament)[0];
-    //medicamentsMap.set(name, frequency);
- // });
-  //console.log(medicamentsMap);
-  
   const ordonnance = new Ordonnance({
     id_pro: req.body.id_pro,
     id_patient: req.body.id_patient,

@@ -3,8 +3,6 @@
 <h1>Créer une ordonnance</h1>
 <div class="container">
     <form>
-        <label for="id">Id :</label>
-        <input type="text" id="id" name="id" readonly><br><br>
 
         <label for="medecin_nom">Nom du médecin :</label>
         <input type="text" id="medecin_nom" name="medecin_nom"><br><br>
@@ -13,7 +11,7 @@
         <input type="text" id="medecin_prenom" name="medecin_prenom"><br><br>
 
         <label for="date">Date :</label>
-        <input type="text" id="date" name="date" value="<?php echo date('Y-m-d'); ?>" readonly><br><br>
+        <input type="text" id="date" name="date"  [value]="getCurrentDateTime()" readonly><br><br>
 
         <fieldset>
             <legend>Médicaments :</legend>

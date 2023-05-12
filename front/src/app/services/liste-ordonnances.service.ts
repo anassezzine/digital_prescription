@@ -47,8 +47,8 @@ export class ListeOrdonnancesService {
   }
 
   getAllOrdonnances(identifiantUser: any) {
-    const headers = new HttpHeaders();
-    this.createAuthHeader(headers);
+    let headers = new HttpHeaders();
+    headers=this.createAuthHeader(headers);
     return this.http.post('http://localhost:3000/ordonnance/getAllOrdonnances',identifiantUser, { headers }).pipe(
       map((resp) => {
         console.log(resp)

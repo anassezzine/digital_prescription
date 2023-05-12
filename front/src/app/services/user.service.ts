@@ -69,4 +69,12 @@ export class UserService {
     }
     return null;
   }
+
+  isLoggedInPatient() :boolean {
+    return !!localStorage.getItem("authToken")&&localStorage.getItem("identifiant")?.length==13;
+  }
+
+  isLoggedInPro() :boolean {
+    return !!localStorage.getItem("authToken")&&localStorage.getItem("identifiant")?.length==11;
+  }
 }

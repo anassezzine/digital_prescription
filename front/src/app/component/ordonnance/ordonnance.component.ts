@@ -9,7 +9,7 @@ export class OrdonnanceComponent {
     //rajouter les propriétés Id, Médecin, Date, Médicaments, Posologie, Durée
 
     _id: string= this.getidordonnace();
-    medecin: string='ftftft';
+    medecin: string='';
     date: string='';
     medicaments: string='';
     posologie: string='';
