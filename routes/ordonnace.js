@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require('passport');
 const router = express.Router();
 const Ordonnance = require('../models/ordonnance.js');
+const{ObjectId} = require('mongodb');
 
 // Add New Task (Todo) for the passport_pro strategy
 router.post('/add', passport.authenticate('professionnel-jwt', { session: false }), (req, res, next) => {
@@ -50,6 +51,35 @@ router.post('/getAllOrdonnances', passport.authenticate('patient-jwt', { session
     });
   }
 });
+
+//récupérer une ordonnance
+router.post('/getOrdonnance', async (req, res, next) => {
+  console.log("getordonnances");
+  const _id = req.body._id;
+  console.log(_id)
+  try {
+    const ordonnance = await Ordonnance.findOne({ _id: new ObjectId(_id) });
+    
+    if (!ordonnance) {
+      return res.send({
+        success: false,
+        message: 'Error, ordonnance not found',
+      });
+    } else {
+      return res.send({
+        success: true,
+        ordonnance
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: false,
+      message: 'An error occurred',
+    });
+  }
+});
+
 
 
 //Delete Task

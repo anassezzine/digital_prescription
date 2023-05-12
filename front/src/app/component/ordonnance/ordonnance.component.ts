@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from  '@angular/router';
+import { ListeOrdonnancesService } from 'src/app/services/liste-ordonnances.service';
+import { map } from 'rxjs/operators';
+
 
 @Component({
   selector: 'app-ordonnance',
@@ -17,49 +21,25 @@ export class OrdonnanceComponent {
 
     //déclare une variable qui ne va pas se considérer attribut de la classe et qui va contenir le retour de la fonction getSelectedOrdonnanceId
       
-    constructor() {
-      this.getidordonnace();
+    constructor(public listeOrdonnancesService:ListeOrdonnancesService, public router :Router) {
+      console.log(this.getOrdonnance(this._id));
     }   
     getidordonnace(): string{
       return localStorage.getItem('_id')||'';
     }
+
+    getOrdonnance(id: any) {
+      console.log(id);
+      return this.listeOrdonnancesService.getOrdonnanceById(id).pipe(
+        map((data: any) => {
+          console.log(data);
+          return data;
+        })
+      ).subscribe((data: any) => {
+        // Handle the data here
+        console.log(data);
+      });
+    }
     
 };
 
-/*
-import { Component } from '@angular/core';
-export class OrdonnanceParams {
-  constructor(
-    public medecin: string,
-    public date: string,
-    public medicaments: string,
-    public posologie: string,
-    public duree: string
-  ) {}
-}
-
-@Component({
-  selector: 'app-ordonnance',
-  templateUrl: './ordonnance.component.html',
-  styleUrls: ['./ordonnance.component.css']
-})
-export class OrdonnanceComponent {
-  id: number;
-  medecin: string;
-  date: string;
-  medicaments: string;
-  posologie: string;
-  duree: string;
-  
-  static count = 1;
-
-  constructor(params: OrdonnanceParams){
-    this.id = OrdonnanceComponent.count++;
-    this.medecin = params.medecin;
-    this.date = params.date;
-    this.medicaments = params.medicaments;
-    this.posologie = params.posologie;
-    this.duree = params.duree;
-  }
-}
-*/

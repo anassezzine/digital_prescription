@@ -67,6 +67,18 @@ export class ListeOrdonnancesService {
       })
     );
   }
+
+  getOrdonnanceById(idOrdonnace: any) {
+    let headers = new HttpHeaders();
+    headers=this.createAuthHeader(headers);
+    const id={_id:idOrdonnace}
+    return this.http.post('http://localhost:3000/ordonnance/getOrdonnance',id).pipe(
+      map((resp) => {
+        console.log(resp)
+        return resp;
+      })
+    );
+  }
   
 }
 
