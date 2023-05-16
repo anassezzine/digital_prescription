@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ListeOrdonnancesService } from 'src/app/services/liste-ordonnances.service';
+import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-ordonnance',
@@ -6,6 +9,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./form-ordonnance.component.css']
 })
 export class FormOrdonnanceComponent {
+
+  constructor(private listeOrdonnancesService: ListeOrdonnancesService) { }
+
   
   supprimerMedicament(event: Event) {
     const medicament = (event.target as HTMLElement).closest('.medicament');
@@ -76,4 +82,55 @@ export class FormOrdonnanceComponent {
     const formattedTime = `${hours}:${minutes}:${seconds}`;
     return `${formattedDate} ${formattedTime}`;
 }  
+
+enregistrerOrdonnance() {
+  const medecinNom = (document.getElementById('medecin_nom') as HTMLInputElement).value;
+  const medecinPrenom = (document.getElementById('medecin_prenom') as HTMLInputElement).value;
+  const date = (document.getElementById('date') as HTMLInputElement).value;
+
+  const medicaments: { nom: string; posologie: any[]; quantite: string; duree: string; }[] = [];
+  const medicamentElements = document.querySelectorAll('.medicament');
+  medicamentElements.forEach((medicamentElement) => {
+    const nom = (medicamentElement.querySelector('.nom_medicament') as HTMLInputElement).value;
+    const posologie = Array.from(medicamentElement.querySelectorAll('.posologie input:checked')).map((input) => (input as HTMLInputElement).value);
+    const quantite = (medicamentElement.querySelector('.quantite_medicament') as HTMLInputElement).value;
+    const duree = (medicamentElement.querySelector('.duree_medicament') as HTMLInputElement).value;
+
+    const medicament = {
+      nom,
+      posologie,
+      quantite,
+      duree
+    };
+    medicaments.push(medicament);
+  });
+
+  const ordonnanceData = {
+    medecin_nom: medecinNom,
+    medecin_prenom: medecinPrenom,
+    date,
+    medicaments
+  };
+
+  this.listeOrdonnancesService.createOrdonnance(ordonnanceData)
+    .subscribe(
+      (response) => {
+        console.log(response);
+        // Réinitialisez les valeurs du formulaire après l'enregistrement de l'ordonnance
+        (document.getElementById('medecin_nom') as HTMLInputElement).value = '';
+        (document.getElementById('medecin_prenom') as HTMLInputElement).value = '';
+        (document.getElementById('date') as HTMLInputElement).value = '';
+        const inputElements = document.querySelectorAll('.medicament input[type="text"], .medicament input[type="number"]');
+        inputElements.forEach((inputElement) => {
+          (inputElement as HTMLInputElement).value = '';
+        });
+        // Ajoutez ici la logique pour afficher un message de succès ou rediriger vers une autre page si nécessaire
+      },
+      (error) => {
+        console.log(error);
+        // Ajoutez ici la logique pour afficher un message d'erreur à l'utilisateur
+      }
+    );
+}
+
 }

@@ -27,6 +27,7 @@ export class ListeOrdonnancesService {
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -79,6 +80,13 @@ export class ListeOrdonnancesService {
       })
     );
   }
+
+  createOrdonnance(ordonnanceData: any): Observable<any> {
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.http.post(`http://localhost:3000/ordonnance/addOrdonnance`, ordonnanceData, { headers });
+  }
+
+
   
 }
 
