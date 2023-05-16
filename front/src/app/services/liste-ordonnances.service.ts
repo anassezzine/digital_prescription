@@ -82,7 +82,7 @@ export class ListeOrdonnancesService {
   }
 
   createOrdonnance(ordonnanceData: any): Observable<any> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post(`http://localhost:3000/ordonnance/addOrdonnance`, ordonnanceData, { headers });
   }
 

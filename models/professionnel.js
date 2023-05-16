@@ -14,25 +14,28 @@ const ProfessionnelSchema = new mongoose.Schema({
 });
 
 //Pre Save Hook. Used to hash the password
-ProfessionnelSchema.pre('save', async function(next) {
-  if (!this.isModified('password')) {
-    return next();
-  }
+//Pre Save Hook. Used to hash the password
 
-  try {
-    const exist = await Medicien.exists({ nom: this.nom, prenom: this.prenom, identifiant: this.identifiant });
-    if (!exist) {
-      throw new Error('Medicien not found!');
-    }
-
-    const salt = await bcrypt.genSalt(10);
-    const hash = await bcrypt.hash(this.password, salt);
-    this.password = hash;
-
-    next();
-  } catch (err) {
-    next(err);
-  }
+ProfessionnelSchema.pre('save', function(next) {
+  console.log('Pre Save Hook Called');
+     if (!this.isModified('password'))  {
+        console.log('Password not modified');
+       return next();
+     }
+    //Generate Salt Value
+    bcrypt.genSalt(10, (err, salt) => {
+      if (err) {
+        return next(err);
+      }
+      //Use this salt value to hash password
+      bcrypt.hash(this.password, salt, (err, hash) => {
+        if (err) {
+          return next(err);
+        }
+        this.password = hash;
+        next();
+      });
+    });
 });
 
 //Custom method to check the password correct when login

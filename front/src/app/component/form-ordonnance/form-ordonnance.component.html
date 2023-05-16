@@ -1,4 +1,4 @@
-<app-navbar></app-navbar>
+<!-- <app-navbar></app-navbar>
 
 <h1>Créer une ordonnance</h1>
 <div class="container">
@@ -24,17 +24,17 @@
                     <div class="posologie">
                         <label for="matin">
                             <input type="checkbox" id="matin" name="posologie[0][]" value="matin">Matin
+                            <input type="number" id="quantite_medicament_matin" name="quantite_medicament[]">
                         </label>
                         <label for="midi">
                             <input type="checkbox" id="midi" name="posologie[0][]" value="midi">Midi
+                            <input type="number" id="quantite_medicament_midi" name="quantite_medicament[]">
                         </label>
                         <label for="soir">
                             <input type="checkbox" id="soir" name="posologie[0][]" value="soir">Soir
+                            <input type="number" id="quantite_medicament_soir" name="quantite_medicament[]">
                         </label><br>
                     </div>
-
-                    <label for="quantite_medicament">Quantité :</label>
-                    <input type="number" id="quantite_medicament" name="quantite_medicament[]"><br><br>
 
                     <label for="duree_medicament">Durée :</label>
                     <input type="number" id="duree_medicament" name="duree_medicament[]"><br><br>
@@ -46,7 +46,64 @@
         </fieldset>
 
         <br><br>
+        <input type="submit" id='submit' value="Enregistrer" (submit)="enregistrerOrdonnance()">
     </form>
-    <input type="submit" value="Enregistrer">
+    
+</div>
+<app-footer></app-footer> -->
+
+<app-navbar></app-navbar>
+
+<h1>Créer une ordonnance</h1>
+<div class="container">
+    <form (submit)="enregistrerOrdonnance()">
+
+        <label for="patient_nom">Nom du patient :</label>
+        <input type="text" id="patient_nom" name="patient_nom" [(ngModel)]="patientNom"><br><br>
+
+        <label for="medecin_prenom">Prénom du patient :</label>
+        <input type="text" id="patient_prenom" name="patient_prenom" [(ngModel)]="patientPrenom"><br><br>
+
+        <label>Numéro de sécurité sociale du patient</label>
+        <input type="text" id="id_patient" name="patient" required>
+        
+
+        <label for="date">Date :</label>
+        <input type="text" id="date" name="date" [value]="getCurrentDateTime()" readonly><br><br>
+
+
+        <fieldset>
+            <legend>Médicaments :</legend>
+            <div id="medicaments">
+                <div *ngFor="let medicament of medicaments; let i = index" class="medicament">
+                    <label for="nom_medicament">Nom :</label>
+                    <input type="text" [id]="'nom_medicament_' + i" name="nom_medicament[]" [(ngModel)]="medicament.nom"><br><br>
+
+                    <label>Posologie :</label><br>
+                    <div class="posologie">
+                        <label for="matin">Matin</label>
+                        <input type="number" [id]="'quantite_medicament_matin_' + i" name="quantite_medicament[]" [(ngModel)]="medicament.quantite.matin">
+                        
+                        <label for="midi">Midi</label>
+                        <input type="number" [id]="'quantite_medicament_midi_' + i" name="quantite_medicament[]" [(ngModel)]="medicament.quantite.midi">
+                      
+                        <label for="soir">Soir</label>
+                        <input type="number" [id]="'quantite_medicament_soir_' + i" name="quantite_medicament[]" [(ngModel)]="medicament.quantite.soir">    
+                    </div>
+
+                    <label for="duree_medicament">Durée :</label>
+                    <input type="number" [id]="'duree_medicament_' + i" name="duree_medicament[]" [(ngModel)]="medicament.duree"><br><br>
+
+                    <button type="button" *ngIf="i > 0" (click)="supprimerMedicament(i)">Supprimer ce médicament</button>
+                </div>
+            </div>
+            <button type="button" (click)="ajouterMedicament()">Ajouter un médicament</button>
+            
+        </fieldset>
+
+        <br><br>
+        <input type="submit" id='submit' value="Enregistrer">
+    </form>
 </div>
 <app-footer></app-footer>
+
