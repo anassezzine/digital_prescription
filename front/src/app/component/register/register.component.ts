@@ -38,10 +38,8 @@ export class RegisterComponent {
     this.userservice.createAccount(user).subscribe(resp => 
     {
       if (!(resp as any).success){
-        console.log(resp as any);
         alert('Error: '+(resp as any).message);
       }else{
-        console.log("success");
         alert("Account created")
         this.router.navigate(['/login']);
       }

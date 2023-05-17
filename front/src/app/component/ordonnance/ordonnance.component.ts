@@ -29,9 +29,7 @@ export class OrdonnanceComponent {
       map((data: any) => {
         this.date=data.ordonnance.date.substr(0, 10);
         for (const medicamentData of data.ordonnance.medicaments) {
-          this.listeOrdonnancesService.getMedicamentById(medicamentData).subscribe((response) => {
-            this.medicaments.push(response.medicament);
-          });
+          this.medicaments.push(medicamentData);
         }
         return this.getnom(data.ordonnance);
       })

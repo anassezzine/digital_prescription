@@ -123,8 +123,6 @@ router.post('/auth', (req, res, next) => {
 
 //Registeration
 router.post('/register', (req, res, next) => {
-  //console.log((req.body.identifiant).toString().length);
-  //get the lenth of req.body.numeroSecu?
  
   if ((req.body.identifiant).toString().length==13){
     let newPatient = new Patient({
@@ -136,7 +134,6 @@ router.post('/register', (req, res, next) => {
         password: req.body.password
     });
 
-    console.log(newPatient);
     newPatient.save()
     .then(user => {
         res.send({
@@ -163,7 +160,6 @@ router.post('/register', (req, res, next) => {
       password: req.body.password
     });
 
-    console.log(newPro);
     newPro.save()
 
     .then(pro => {
@@ -192,8 +188,6 @@ router.post('/register', (req, res, next) => {
 //Get user info
 router.post('/getpro', (req, res) => {
   const id_pro = req.body.identifiant;
-  console.log("id_pro")
-  console.log(id_pro)
   Professionnel.findOne({ identifiant: id_pro })
   .then((user) => {
     if (!user) {

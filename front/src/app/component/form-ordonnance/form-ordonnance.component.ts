@@ -32,7 +32,6 @@ export class FormOrdonnanceComponent {
   }
 
   enregistrerOrdonnance() {
-    console.log('Je suis dans la fonction enregistrerOrdonnance');
   
     const ordonnanceData = {
       id_pro: localStorage.getItem('identifiant'),
