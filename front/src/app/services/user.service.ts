@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -8,6 +11,13 @@ import { map } from 'rxjs/operators';
 export class UserService {
 
   constructor(private http:HttpClient) { }
+  
+
+  createAuthHeader(headers: HttpHeaders) {
+    const token = localStorage.getItem("authToken");
+    headers=headers.append('Authorization', `Bearer ${token}`);
+    return headers;
+  }
 
   createAccount(user:any){
     return this.http.post('http://localhost:3000/users/register', user).pipe(
@@ -27,7 +37,10 @@ export class UserService {
   }
 
   updateUserProfile(user:any){
-    return this.http.post('http://localhost:3000/users/updateUserInfo', user).pipe(
+    let headers = new HttpHeaders();
+    headers=this.createAuthHeader(headers);
+    console.log("yo")
+    return this.http.post('http://localhost:3000/users/updateUserInfo', user ,{ headers }).pipe(
       map((resp) => {
         return resp;
       })
@@ -45,8 +58,6 @@ export class UserService {
   }
 
   isLoggedIn() :boolean {
-    //TODO: Enhace this method. angular2-jwt
-    //to verifey if the token in expired
     return !!localStorage.getItem("authToken");
   }
 

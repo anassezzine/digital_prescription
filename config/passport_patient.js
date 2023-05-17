@@ -5,6 +5,8 @@ const Patient = require('../models/patient');
 const Professionnel = require('../models/professionnel');
 
 module.exports = function(passport) {
+
+  
   // Configuration for patient authentication
   const patient_opts = {
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -31,6 +33,7 @@ module.exports = function(passport) {
 
   passport.use('professionnel-jwt', new JwtStrategy(professionnel_opts, async (jwt_payload, done) => {
     try {
+      console.log("voila")
       const user = await Professionnel.findById(jwt_payload.user._id);
       if (user) {
         return done(null, user);
@@ -40,4 +43,9 @@ module.exports = function(passport) {
       return done(err, false);
     }
   }));
+
+
+
+
+
 };

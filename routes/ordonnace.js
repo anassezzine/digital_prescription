@@ -11,7 +11,7 @@ router.use(express.json());
 router.use(express.urlencoded({ extended: true }));
 
 // créer et ajouter une nouvelle ordonnance
-router.post('/addOrdonnance', (req, res, next) => {
+router.post('/addOrdonnance',passport.authenticate('professionnel-jwt', { session: false }), async (req, res, next) => {
   const ordonnance = new Ordonnance({
     id_pro: req.body.id_pro,
     id_patient: req.body.id_patient,

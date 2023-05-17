@@ -3,6 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const Patient = require('../models/patient')
 const Professionnel = require('../models/professionnel')
+const passport = require('passport');
 
 //Login
 router.post('/auth', (req, res, next) => {
@@ -206,7 +207,7 @@ router.post('/getpro', (req, res) => {
 });
 
 // Modify user info
-router.post('/updateUserInfo', (req, res) => {
+router.post('/updateUserInfo', passport.authenticate(['patient-jwt', 'professionnel-jwt'], { session: false }) , async (req, res,next) => {
   const updatedInfo = {
     nom: req.body.nom,
     prenom: req.body.prenom,

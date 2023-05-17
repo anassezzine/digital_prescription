@@ -14,9 +14,7 @@ const PatientSchema = new mongoose.Schema({
 
 //Pre Save Hook. Used to hash the password
 PatientSchema.pre('save', function(next) {
-  console.log('Pre Save Hook Called');
      if (!this.isModified('password'))  {
-        console.log('Password not modified');
        return next();
      }
 

@@ -28,7 +28,7 @@ mongoose.connection.on('error', (err) => {
 });
 
 app.use(session({
-    secret: [process.env.PATIENT_SECRET, process.env.PROFESSIONNEL_SECRET],
+    secret: [process.env.PATIENT_SECRET,process.env.USER_SECRET, process.env.PROFESSIONNEL_SECRET],
     resave: false,
     saveUninitialized: false
 }));

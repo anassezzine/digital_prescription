@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -26,7 +26,6 @@ export class ListeOrdonnancesService {
     headers=this.createAuthHeader(headers);
     return this.http.post('http://localhost:3000/ordonnance/getAllOrdonnances',identifiantUser, { headers }).pipe(
       map((resp) => {
-        console.log(resp)
         return resp;
       })
     );
@@ -37,7 +36,6 @@ export class ListeOrdonnancesService {
     console.log(identifiant);
     return this.http.post('http://localhost:3000/users/getpro',identifiant).pipe(
       map((resp) => {
-        console.log("resp",resp)
         return resp;
       })
     );
@@ -49,14 +47,14 @@ export class ListeOrdonnancesService {
     const id={_id:idOrdonnace}
     return this.http.post('http://localhost:3000/ordonnance/getOrdonnance',id, { headers }).pipe(
       map((resp) => {
-        console.log(resp)
         return resp;
       })
     );
   }
 
   createOrdonnance(ordonnanceData: any): Observable<any> {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    let headers = new HttpHeaders();
+    headers=this.createAuthHeader(headers);
     return this.http.post(`http://localhost:3000/ordonnance/addOrdonnance`, ordonnanceData, { headers });
   }
 

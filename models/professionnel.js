@@ -14,8 +14,6 @@ const ProfessionnelSchema = new mongoose.Schema({
 });
 
 //Pre Save Hook. Used to hash the password
-//Pre Save Hook. Used to hash the password
-
 ProfessionnelSchema.pre('save', function(next) {
   console.log('Pre Save Hook Called');
      if (!this.isModified('password'))  {
@@ -40,10 +38,8 @@ ProfessionnelSchema.pre('save', function(next) {
 
 //Custom method to check the password correct when login
 ProfessionnelSchema.methods.isPasswordMatch = function(plainPassword, hashed, callback) {
-  console.log('boii');
   bcrypt.compare(plainPassword, hashed, (err, isMatch) => {
-    console.log(plainPassword,"gg");
-    console.log(hashed,"gg");
+
     if (err) {
       return callback(err);
     }
