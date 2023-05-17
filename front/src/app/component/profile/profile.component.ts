@@ -39,7 +39,13 @@ export class ProfileComponent implements OnInit {
     this.userService.updateUserProfile(updatedProfile).subscribe((resp: any) => {
       
         alert(resp.message);
-        
+        //mettre à jour le user dans le local storage
+        localStorage.setItem("nom", (updatedProfile.nom));
+        localStorage.setItem("prenom", (updatedProfile.prenom));
+        localStorage.setItem("identifiant", (updatedProfile.identifiant));
+        localStorage.setItem("email", (updatedProfile.email));
+        localStorage.setItem("numTel", (updatedProfile.numTel));
+   
       // Succès de la mise à jour du profil
       // Effectuez les actions supplémentaires nécessaires ici
     });

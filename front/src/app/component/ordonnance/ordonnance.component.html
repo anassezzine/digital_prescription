@@ -1,11 +1,15 @@
 <app-navbar></app-navbar>
 <div class="ordonnance">
+    <a class="croix" [routerLink]="['/Ordonnances']">✕</a>
     <h1 class="titre">Ordonnance : {{ _id }}</h1>
   
-    <ul>
-      <li><span class="medicament">Médicaments :</span> {{ medicaments }}</li>
-      <li><span class="posologie">Posologie :</span> {{ posologie }}</li>
-      <li><span class="duree">Durée :</span> {{ duree }}</li>
+    <ul *ngFor="let medicament of medicaments">
+        <li><span class="medicament">Médicaments :</span> {{ medicament.nom }}</li>
+        <li><span class="posologie">A prendre :</span></li>
+        <span>{{ medicament.quantite.matin }} fois le matin, </span>
+        <span>{{ medicament.quantite.midi }} fois le midi </span>
+        <span> et {{ medicament.quantite.soir }} fois le soir </span>
+        <li><span class="duree">pendant :</span> {{ medicament.duree }}</li>
     </ul>
   
     <p class="medecin">Prescription établie par le Dr {{ medecin }}</p>
@@ -13,4 +17,3 @@
 </div>
 
 <app-footer></app-footer>
-

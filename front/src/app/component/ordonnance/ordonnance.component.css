@@ -1,52 +1,54 @@
 /* ordonnance.component.css */
 
 ul {
-    list-style: none;
-    padding-left: 0;
-    font-size: 18px;
-  }
+  list-style: none;
+  padding-left: 0;
+  font-size: 18px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+.ordonnance {
   
-  li {
-    margin-bottom: 10px;
-  }
-  
-  .ordonnance {
-    
-    background-color: #fff;
-    border: 1px solid #ccc;
-    padding: 20px;
-    margin: 20% -100px 100px auto; /* Utilisation de margin: % valeur auto pour centrer le formulaire */
-    width: 80%; /* Modification de la largeur du formulaire */
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-  }
-  
-  .titre {
-    font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .medicament {
-    font-weight: bold;
-    text-decoration: underline;
-  }
-  
-  .posologie {
-    margin-top: 5px;
-  }
-  
-  .duree {
-    margin-top: 10px;
-  }
-  
-  .medecin {
-    margin-top: 20px;
-    text-align: right;
-    font-style: italic;
-  }
-  .date {
-    margin-top: 20px;
-    text-align: right;
-    font-style: italic;
-  }
-  
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 20% -100px 100px auto; /* Utilisation de margin: % valeur auto pour centrer le formulaire */
+  width: 80%; /* Modification de la largeur du formulaire */
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+.croix {
+  color: red;
+}
+
+.titre {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.medicament {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.posologie {
+  margin-top: 5px;
+}
+
+.duree {
+  margin-top: 10px;
+}
+
+.medecin {
+  margin-top: 20px;
+  text-align: right;
+  font-style: italic;
+}
+.date {
+  margin-top: 20px;
+  text-align: right;
+  font-style: italic;
+}

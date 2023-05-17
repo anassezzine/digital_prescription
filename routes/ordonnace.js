@@ -3,6 +3,7 @@ const passport = require('passport');
 const router = express.Router();
 const Ordonnance = require('../models/ordonnance.js');
 const{ObjectId} = require('mongodb');
+const Medicament = require('../models/medicament.js');
 
 // Middleware pour parser les données JSON
 router.use(express.json());
@@ -92,7 +93,32 @@ router.post('/getOrdonnance', async (req, res, next) => {
   }
 });
 
-
+router.post('/getmedicaments', async (req, res, next) => {
+  console.log("getmedicaments");
+  const id = req.body.id;
+  console.log(id)
+  try {
+    const medicament = await Medicament.findOne({ _id: new ObjectId(id) });
+    
+    if (!medicament) {
+      return res.send({
+        success: false,
+        message: 'Error, medicament not found',
+      });
+    } else {
+      return res.send({
+        success: true,
+        medicament
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    return res.send({
+      success: false,
+      message: 'An error occurred',
+    });
+  }
+});
 
 //Delete Task
 /*router.delete('/delete/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {
