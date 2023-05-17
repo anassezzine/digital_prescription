@@ -62,7 +62,7 @@ export class OrdonnanceComponent {
       const morningTime = new Date(prescriptionDate.getFullYear(), prescriptionDate.getMonth(), prescriptionDate.getDate(), 8);
       const noonTime = new Date(prescriptionDate.getFullYear(), prescriptionDate.getMonth(), prescriptionDate.getDate(), 12);
       const eveningTime = new Date(prescriptionDate.getFullYear(), prescriptionDate.getMonth(), prescriptionDate.getDate());
-      eveningTime.setHours(23, 11); // Réglage de l'heure sur 22h07
+      eveningTime.setHours(23, 45); // Réglage de l'heure sur 22h07
 
 
       const morningDueDate = new Date(morningTime.setDate(morningTime.getDate() + durationInDays));
@@ -85,8 +85,17 @@ export class OrdonnanceComponent {
 
   scheduleNotification(moment: string, dueTime: Date, medicament: any) {
     console.log('scheduleNotification');
-    const currentTime = new Date();
-    if (currentTime >= dueTime) {
+    const currentDate = new Date();
+    const currentTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+    
+    const dueDate =new Date();
+    const dueTime1 = new Date(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate());
+    dueTime1.setHours(23, 25); // Réglage de l'heure sur 22h07
+
+    console.log("current time",currentTime.getTime());
+    console.log("due time",dueTime1.getTime());
+
+    if (currentTime.getTime() <= dueTime1.getTime()) {
       console.log('je suis dans le if');
       console.log(`Il est temps de prendre le médicament ${medicament.nom} (${moment})`);
     }
