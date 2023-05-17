@@ -13,7 +13,7 @@ export class OrdonnanceComponent {
   _id: string = this.getidordonnace();
   medecin: string = '';
   date: string = '';
-  medicaments:any=[] ;
+  medicaments: { nom: string; quantite: { matin: string, midi: string, soir: string }; duree: string; }[] = [];
 
   constructor(public listeOrdonnancesService: ListeOrdonnancesService, public router: Router) {
     this.getOrdonnance(this._id);
@@ -23,11 +23,12 @@ export class OrdonnanceComponent {
     return localStorage.getItem('_id') || '';
   }
 
+
   getOrdonnance(id: any) {
-    
+
     this.listeOrdonnancesService.getOrdonnanceById(id).pipe(
       map((data: any) => {
-        this.date=data.ordonnance.date.substr(0, 10);
+        this.date = data.ordonnance.date.substr(0, 10);
         for (const medicamentData of data.ordonnance.medicaments) {
           this.medicaments.push(medicamentData);
         }
@@ -39,6 +40,7 @@ export class OrdonnanceComponent {
       });
     });
   }
+  
 
   getnom(ordonnance: any): Observable<string> {
     return this.listeOrdonnancesService.getnom(ordonnance.id_pro).pipe(
@@ -47,6 +49,49 @@ export class OrdonnanceComponent {
       })
     );
   }
+
+  notifyOrdonnance() {
+    console.log('notifyOrdonnance');
+    const currentDate = new Date();
+    const today = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+
+    for (const medicament of this.medicaments) {
+      const prescriptionDate = new Date(this.date);
+      const durationInDays = parseInt(medicament.duree, 10);
+
+      const morningTime = new Date(prescriptionDate.getFullYear(), prescriptionDate.getMonth(), prescriptionDate.getDate(), 8);
+      const noonTime = new Date(prescriptionDate.getFullYear(), prescriptionDate.getMonth(), prescriptionDate.getDate(), 12);
+      const eveningTime = new Date(prescriptionDate.getFullYear(), prescriptionDate.getMonth(), prescriptionDate.getDate());
+      eveningTime.setHours(23, 11); // Réglage de l'heure sur 22h07
+
+
+      const morningDueDate = new Date(morningTime.setDate(morningTime.getDate() + durationInDays));
+      const noonDueDate = new Date(noonTime.setDate(noonTime.getDate() + durationInDays));
+      const eveningDueDate = new Date(eveningTime.setDate(eveningTime.getDate() + durationInDays));
+
+      if (today < morningDueDate) {
+        this.scheduleNotification('matin', morningTime, medicament);
+      }
+
+      if (today < noonDueDate) {
+        this.scheduleNotification('midi', noonTime, medicament);
+      }
+
+      if (today < eveningDueDate) {
+        this.scheduleNotification('soir', eveningTime, medicament);
+      }
+    }
+  }
+
+  scheduleNotification(moment: string, dueTime: Date, medicament: any) {
+    console.log('scheduleNotification');
+    const currentTime = new Date();
+    if (currentTime >= dueTime) {
+      console.log('je suis dans le if');
+      console.log(`Il est temps de prendre le médicament ${medicament.nom} (${moment})`);
+    }
+  }
+
 
 
 }
