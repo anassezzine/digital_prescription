@@ -88,6 +88,29 @@ router.post('/getOrdonnance', passport.authenticate('patient-jwt', { session: fa
   }
 });
 
+//envoyer un mail de notification
+router.post('/sendMail', async (req, res, next)  => {
+  const email = req.body.email;
+  const message = req.body.message;
+  const mailData = {
+    email: req.body.email,
+    message: req.body.message
+  };
+
+  try {
+    return res.send({
+      success: true,
+      mailData: mailData
+    });
+  } catch (error) {
+    return res.send({
+      success: false,
+      message: 'An error occurred',
+    });
+  }
+});
+
+
 
 //Delete Task
 /*router.delete('/delete/:id', passport.authenticate('jwt', { session: false }), (req, res, next) => {

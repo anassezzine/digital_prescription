@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { ListeOrdonnancesService } from 'src/app/services/liste-ordonnances.service';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import * as jsPDF from 'jspdf';
+import * as nodemailer from 'nodemailer';
+
 
 @Component({
   selector: 'app-ordonnance',
@@ -40,8 +43,8 @@ export class OrdonnanceComponent {
       });
     });
   }
-  
 
+  
   getnom(ordonnance: any): Observable<string> {
     return this.listeOrdonnancesService.getnom(ordonnance.id_pro).pipe(
       map((data: any) => {
@@ -53,31 +56,29 @@ export class OrdonnanceComponent {
   notifyOrdonnance() {
     console.log('notifyOrdonnance');
     const currentDate = new Date();
-    const today = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+  
 
     for (const medicament of this.medicaments) {
       const prescriptionDate = new Date(this.date);
       const durationInDays = parseInt(medicament.duree, 10);
-
-      const morningTime = new Date(prescriptionDate.getFullYear(), prescriptionDate.getMonth(), prescriptionDate.getDate(), 8);
-      const noonTime = new Date(prescriptionDate.getFullYear(), prescriptionDate.getMonth(), prescriptionDate.getDate(), 12);
-      const eveningTime = new Date(prescriptionDate.getFullYear(), prescriptionDate.getMonth(), prescriptionDate.getDate());
-      eveningTime.setHours(23, 45); // Réglage de l'heure sur 22h07
+      //créer une variable endDay qui est la date de fin de la prise du médicament
+      const endDay = new Date(prescriptionDate.getFullYear(), prescriptionDate.getMonth(), prescriptionDate.getDate() + durationInDays);
 
 
-      const morningDueDate = new Date(morningTime.setDate(morningTime.getDate() + durationInDays));
-      const noonDueDate = new Date(noonTime.setDate(noonTime.getDate() + durationInDays));
-      const eveningDueDate = new Date(eveningTime.setDate(eveningTime.getDate() + durationInDays));
+       //écrit une variable morningDueTime qui est l'horaire de prise du médicament le matin à 8h00min00s
+      const morningTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 8, 0, 0);
+      //écrit une variable noonDueTime qui est l'horaire de prise du médicament le midi à 12h00min00s
+      const noonTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 12, 0, 0);
+      //écrit une variable eveningDueTime qui est l'horaire de prise du médicament le soir à 20h00min00s
+      const eveningTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 23, 57, 0);
 
-      if (today < morningDueDate) {
+      console.log('currentDate date:', currentDate.getDate());
+      console.log('endDay date:', endDay.getDate());
+
+      //si la date de fin de prise du médicament est supérieure à la date du jour
+      if (currentDate.getTime() <= endDay.getTime()) {
         this.scheduleNotification('matin', morningTime, medicament);
-      }
-
-      if (today < noonDueDate) {
         this.scheduleNotification('midi', noonTime, medicament);
-      }
-
-      if (today < eveningDueDate) {
         this.scheduleNotification('soir', eveningTime, medicament);
       }
     }
@@ -85,22 +86,94 @@ export class OrdonnanceComponent {
 
   scheduleNotification(moment: string, dueTime: Date, medicament: any) {
     console.log('scheduleNotification');
-    const currentDate = new Date();
-    const currentTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-    
-    const dueDate =new Date();
-    const dueTime1 = new Date(dueDate.getFullYear(), dueDate.getMonth(), dueDate.getDate());
-    dueTime1.setHours(23, 25); // Réglage de l'heure sur 22h07
+    const currentTime = new Date();
+    console.log('currentTime+60:', currentTime.getTime() + 60000);
+    console.log('dueTime:', dueTime.getTime());
+    console.log('currentTime-60:', currentTime.getTime() - 60000);
+  
+    if ((dueTime.getTime() >= ((currentTime.getTime())-180000)) && (dueTime.getTime() <= ((currentTime.getTime())+180000))) {
+      const email = localStorage.getItem('email') || '';
+      if(moment === 'matin'){
+        const messageMatin = 'Il est l\'heure de prendre '+medicament.quantite.matin +' dose(s) de ' + medicament.nom + ' du ' + moment; 
+        this.sendMailNotification(email, messageMatin);  
+      }else if(moment === 'midi'){
+        const messageMidi ='Il est l\'heure de prendre '+medicament.quantite.midi +' dose(s) de ' + medicament.nom + ' du ' + moment;
+        this.sendMailNotification(email, messageMidi); 
+      }else if(moment === 'soir'){
+        const messageSoir = 'Il est l\'heure de prendre '+medicament.quantite.soir +' dose(s) de ' + medicament.nom + ' du ' + moment;
+        this.sendMailNotification(email, messageSoir);
+      }
 
-    console.log("current time",currentTime.getTime());
-    console.log("due time",dueTime1.getTime());
-
-    if (currentTime.getTime() <= dueTime1.getTime()) {
-      console.log('je suis dans le if');
-      console.log(`Il est temps de prendre le médicament ${medicament.nom} (${moment})`);
     }
   }
 
+  async sendMailNotification(email: string, message: string) {
+    // Configurer le transporteur Nodemailer
+    const transporter = nodemailer.createTransport({
+      host: 'smtp.example.com', // Remplacez par le serveur SMTP réel
+      port: 587, // Remplacez par le port SMTP réel
+      secure: false, // true pour le port sécurisé (par exemple, 465)
+      auth: {
+        user: 'kamiliachaker@gmail.com', // Remplacez par votre adresse e-mail
+        pass: 'Hakima-1973' // Remplacez par votre mot de passe d'e-mail
+      }
+    });
+  
+    try {
+      // Envoyer l'e-mail
+      const mailOptions = {
+        from: 'kamiliachaker@gmail.com', // Remplacez par votre adresse e-mail
+        to: email,
+        subject: 'Notification d\'ordonnance',
+        text: message
+      };
+  
+      const info = await transporter.sendMail(mailOptions);
+      console.log('E-mail sent:', info.response);
+    } catch (error) {
+      console.error('Error sending e-mail:', error);
+    }
+  }
+  
+  
+  telechargerPDF() {
+    const doc = new jsPDF.default();
 
+    // Titre de l'ordonnance
+    doc.setFontSize(16);
+    doc.setFont('bold');
+    doc.text('Ordonnance : ' + this._id, 20, 20);
 
-}
+    // Liste des médicaments
+    doc.setFontSize(12);
+    let posY = 40;
+    for (const medicament of this.medicaments) {
+      doc.text('Médicaments : ' + medicament.nom, 20, posY);
+      posY += 10;
+      doc.text(
+        'A prendre : ' +
+        medicament.quantite.matin +
+        ' fois le matin, ' +
+        medicament.quantite.midi +
+        ' fois le midi et ' +
+        medicament.quantite.soir +
+        ' fois le soir',
+        30,
+        posY
+      );
+      posY += 10;
+      doc.text('Pendant : ' + medicament.duree+'jours', 30, posY);
+      posY += 20;
+    }
+
+      // Informations du médecin et de la date
+      doc.setFontSize(12);
+      doc.setFont('italic');
+      doc.text('Prescription établie par le Dr ' + this.medecin, 20, posY);
+      posY += 10;
+      doc.text('Le ' + this.date, 20, posY);
+
+      // Enregistrez le fichier PDF
+      doc.save('ordonnance.pdf');
+  }
+}  

@@ -69,6 +69,13 @@ export class ListeOrdonnancesService {
     );
   }
   
+
+  sendMail(mailData: any): Observable<any> {
+    let headers = new HttpHeaders();
+    headers=this.createAuthHeader(headers);
+    return this.http.post(`http://localhost:3000/ordonnance/sendMail`, mailData, { headers });
+  }
+
 }
 
 
