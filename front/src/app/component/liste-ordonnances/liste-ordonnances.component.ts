@@ -88,6 +88,7 @@ export class ListeOrdonnancesComponent implements OnInit {
             const nom = results[i];
   
             const ordonnanceObj = new OrdonnanceComponent(this.listeOrdonnancesService, this.router);
+            ordonnanceObj.num++;
             ordonnanceObj._id = ordonnance._id;
             ordonnanceObj.medecin = nom;
             ordonnanceObj.date = ordonnance.date;

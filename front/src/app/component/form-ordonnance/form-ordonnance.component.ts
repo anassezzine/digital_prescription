@@ -40,7 +40,6 @@ export class FormOrdonnanceComponent {
       date: this.getCurrentDateTime(),
       medicaments: this.medicaments
     };
-    console.log(ordonnanceData);
   
     this.listeOrdonnancesService.createOrdonnance(ordonnanceData)
       .subscribe(
@@ -50,6 +49,7 @@ export class FormOrdonnanceComponent {
           this.patientNom = '';
           this.patientPrenom = '';
           this.medicaments = [];
+          alert("Ordonnance created")
           // Ajoutez ici la logique pour afficher un message de succès ou rediriger vers une autre page si nécessaire
         },
         (error) => {

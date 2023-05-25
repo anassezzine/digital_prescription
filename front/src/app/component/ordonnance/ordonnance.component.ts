@@ -16,6 +16,7 @@ export class OrdonnanceComponent {
   _id: string = this.getidordonnace();
   medecin: string = '';
   date: string = '';
+  num:number=0;
   medicaments: { nom: string; quantite: { matin: string, midi: string, soir: string }; duree: string; }[] = [];
 
   constructor(public listeOrdonnancesService: ListeOrdonnancesService, public router: Router) {
