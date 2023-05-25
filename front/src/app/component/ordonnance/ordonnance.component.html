@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="ordonnance">
-    <a class="croix" [routerLink]="['/Ordonnances']">✕</a>
+    <a class="croix"  (click)="retour()">✕</a>
     <h1 class="titre">Ordonnance : {{ _id }}</h1>
   
     <ul *ngFor="let medicament of medicaments">

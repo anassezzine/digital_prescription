@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ListeOrdonnancesService } from 'src/app/services/liste-ordonnances.service';
 import { map } from 'rxjs/operators';
@@ -12,17 +12,21 @@ import * as jsPDF from 'jspdf';
   templateUrl: './ordonnance.component.html',
   styleUrls: ['./ordonnance.component.css']
 })
-export class OrdonnanceComponent {
+export class OrdonnanceComponent implements OnInit {
   _id: string = this.getidordonnace();
   medecin: string = '';
   date: string = '';
+  static number:number=1;
   num:number=0;
   medicaments: { nom: string; quantite: { matin: string, midi: string, soir: string }; duree: string; }[] = [];
 
   constructor(public listeOrdonnancesService: ListeOrdonnancesService, public router: Router) {
+    
+  }
+  
+  ngOnInit() {
     this.getOrdonnance(this._id);
   }
-
   getidordonnace(): string {
     return localStorage.getItem('_id') || '';
   }
@@ -55,7 +59,7 @@ export class OrdonnanceComponent {
   }
 
   notifyOrdonnance() {
-    console.log('notifyOrdonnance');
+  
     const currentDate = new Date();
   
 
@@ -83,7 +87,6 @@ export class OrdonnanceComponent {
   }
 
   scheduleNotification(moment: string, dueTime: Date, medicament: any) {
-    console.log('scheduleNotification');
     const currentTime = new Date();
   
     if ((dueTime.getTime() >= ((currentTime.getTime())-60000)) && (dueTime.getTime() <= ((currentTime.getTime())+60000))) {
@@ -174,5 +177,13 @@ export class OrdonnanceComponent {
 
       // Enregistrez le fichier PDF
       doc.save('ordonnance.pdf');
+  }
+
+  retour(){
+    this.medecin = '';
+    this.date = '';
+    this.medicaments = [];
+    this.router.navigate(['/Ordonnances']);
+    return false;
   }
 }  
