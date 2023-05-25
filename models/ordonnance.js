@@ -1,6 +1,6 @@
 // Ordonnance Model
 const mongoose = require('mongoose');
-
+const Medicament = require('./listmedicament');
 // Schema Definition
 const OrdonnanceSchema = new mongoose.Schema({
   id_pro: { type: String, required: true },
@@ -17,31 +17,24 @@ const OrdonnanceSchema = new mongoose.Schema({
   }]
 });
 
-const Ordonnance = mongoose.model('Ordonnance', OrdonnanceSchema);
 
-module.exports = Ordonnance;
-
-
-/*PrescriptionSchema.pre('save', async function(next) {
+OrdonnanceSchema.pre('save', async function(next) {
   try {
-    console.log("save");
-    console.log(this.medicaments);
-    //console.log(Medicament.schema);
-    console.log(this.medicaments.length);
+    const medicamentNames = this.medicaments.map(medicament => medicament.nom);
 
-    let a={medicamentName: this.medicaments  };
-    console.log(a)
-    const medsExist = await Medicament.find({medicamentName: {$in: this.medicaments}});
+    const medsExist = await Medicament.find({ medicamentName: { $in: medicamentNames } });
 
-    console.log(medsExist);
-    console.log(medsExist.length);
-    
-    if (medsExist.length !== this.medicaments.length) {
-      console.log("hey");
-      throw new Error('One or more medicament IDs do not exist in the Medicament collection');
+    if (medsExist.length !== medicamentNames.length) {
+      throw new Error('One or more medicament names do not exist in the Medicament collection');
+    } else {
+      next();
     }
-    next();
   } catch (err) {
     next(err);
   }
-});*/
+});
+
+
+const Ordonnance = mongoose.model('Ordonnance', OrdonnanceSchema);
+
+module.exports = Ordonnance;

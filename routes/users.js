@@ -134,6 +134,7 @@ router.post('/register', (req, res, next) => {
         identifiant:req.body.identifiant,
         password: req.body.password
     });
+    
 
     newPatient.save()
     .then(user => {
@@ -160,7 +161,7 @@ router.post('/register', (req, res, next) => {
       identifiant:req.body.identifiant,
       password: req.body.password
     });
-
+    console.log(newPro)
     newPro.save()
 
     .then(pro => {

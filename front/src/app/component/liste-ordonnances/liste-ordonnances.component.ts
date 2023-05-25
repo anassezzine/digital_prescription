@@ -64,7 +64,7 @@ export class ListeOrdonnancesComponent implements OnInit {
             ordonnanceObj.num=OrdonnanceComponent.number++;
             ordonnanceObj._id = ordonnance._id;
             ordonnanceObj.medecin = nom;
-            ordonnanceObj.date = ordonnance.date;
+            ordonnanceObj.date = ordonnance.date.substr(0, 10);
   
             ordonnanceList.push(ordonnanceObj);
           }

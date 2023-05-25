@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <div class="ordonnance">
-    <a class="croix"  (click)="retour()">✕</a>
+    <a class="croix" [routerLink]="['/Ordonnances']">✕</a>
     <h1 class="titre">Ordonnance : {{ _id }}</h1>
   
     <ul *ngFor="let medicament of medicaments">
@@ -14,7 +14,7 @@
   
     <p class="medecin">Prescription établie par le Dr {{ medecin }}</p>
     <p class="date">Le {{ date }}</p>
-    <button (click)="telechargerPDF()">Télécharger en PDF</button>
+    <button class="button-pdf" (click)="telechargerPDF()">Télécharger en PDF</button>
 
 </div>
 

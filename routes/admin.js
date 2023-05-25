@@ -67,7 +67,7 @@ router.post('/register', (req, res, next) => {
         nom: req.body.nom,
         password: req.body.password
     });
-    console.log(newAdmin);
+  
 
     newAdmin.save()
     .then(user => {
@@ -89,15 +89,12 @@ router.post('/register', (req, res, next) => {
 });
 
 router.post('/addmedecin', (req, res, next) => {
-    /*    nom: {type :String, required : false},
-    prenom: {type :String, required : false},
-    identifiant: {type :Number, min: 11111111111, max: 99999999999 , required : true, unique: true},  */
     const newmedecin = new Medecin({
         nom: req.body.nom,
         prenom: req.body.prenom,
         identifiant:req.body.identifiant,
     })
-    console.log(newmedecin);
+  
   
     newmedecin.save()
       .then(medecin => {
@@ -143,10 +140,6 @@ router.post('/addmedicament', (req, res, next) => {
   
 });
 
-//to do delete medecien 
-
-
-//to do delete medicamant
 
 module.exports = router;
 

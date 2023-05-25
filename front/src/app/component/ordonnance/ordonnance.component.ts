@@ -178,12 +178,4 @@ export class OrdonnanceComponent implements OnInit {
       // Enregistrez le fichier PDF
       doc.save('ordonnance.pdf');
   }
-
-  retour(){
-    this.medecin = '';
-    this.date = '';
-    this.medicaments = [];
-    this.router.navigate(['/Ordonnances']);
-    return false;
-  }
 }  

@@ -2,6 +2,7 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const Medicien = require('./medecin');
+const { query } = require('express');
 
 // Schema Definition
 const ProfessionnelSchema = new mongoose.Schema({
@@ -9,32 +10,50 @@ const ProfessionnelSchema = new mongoose.Schema({
   prenom: {type :String, required : false},
   email: { type: String, required: true, unique: true },
   numTel: { type: Number,required: true, unique: true},
-  identifiant: {type :Number, min: 11111111111, max: 99999999999 , required : true, unique: true}, 
+  identifiant: {type :Number, min: 10000000000, max: 99999999999 , required : true, unique: true}, 
   password: { type: String, required: false }
 });
 
-//Pre Save Hook. Used to hash the password
 ProfessionnelSchema.pre('save', function(next) {
-  console.log('Pre Save Hook Called');
-     if (!this.isModified('password'))  {
-        console.log('Password not modified');
-       return next();
-     }
-    //Generate Salt Value
+
+  const query={ nom: this.nom, prenom: this.prenom, identifiant: this.identifiant }
+  // Check if Medicien exists with the same nom, prenom, and identifiant
+  Medicien.findOne(query)
+  .then((medicien)=>{
+    console.log(medicien)
+    if (!medicien) {
+      // Medicien not found, do not save the professionnel
+      return next(new Error('Medicien not found'));
+    }
+
+    if (!this.isModified('password')) {
+
+      return next();
+    }
+
+    // Generate Salt Value
     bcrypt.genSalt(10, (err, salt) => {
       if (err) {
         return next(err);
       }
-      //Use this salt value to hash password
+
+      // Use this salt value to hash password
       bcrypt.hash(this.password, salt, (err, hash) => {
         if (err) {
           return next(err);
         }
+
         this.password = hash;
+        console.log(this.password)
         next();
       });
     });
+  })
+  .catch((err)=>{
+    return next(new Error('Medicien not found'));
+  });
 });
+
 
 //Custom method to check the password correct when login
 ProfessionnelSchema.methods.isPasswordMatch = function(plainPassword, hashed, callback) {
