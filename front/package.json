@@ -18,6 +18,7 @@
     "@angular/platform-browser": "^15.2.0",
     "@angular/platform-browser-dynamic": "^15.2.0",
     "@angular/router": "^15.2.0",
+    "crypto-browserify": "^3.12.0",
     "jspdf": "^2.5.1",
     "nodemailer": "^6.9.2",
     "rxjs": "~7.8.0",

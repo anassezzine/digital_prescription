@@ -4,7 +4,7 @@ import { ListeOrdonnancesService } from 'src/app/services/liste-ordonnances.serv
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import * as jsPDF from 'jspdf';
-import * as nodemailer from 'nodemailer';
+//import * as nodemailer from 'nodemailer';
 
 
 @Component({
@@ -95,27 +95,31 @@ export class OrdonnanceComponent {
       const email = localStorage.getItem('email') || '';
       if(moment === 'matin'){
         const messageMatin = 'Il est l\'heure de prendre '+medicament.quantite.matin +' dose(s) de ' + medicament.nom + ' du ' + moment; 
-        this.sendMailNotification(email, messageMatin);  
+        console.log('messageMatin:', messageMatin);
+        //this.sendMailNotification(email, messageMatin);  
       }else if(moment === 'midi'){
         const messageMidi ='Il est l\'heure de prendre '+medicament.quantite.midi +' dose(s) de ' + medicament.nom + ' du ' + moment;
-        this.sendMailNotification(email, messageMidi); 
+        console.log('messageMidi:', messageMidi);
+        //this.sendMailNotification(email, messageMidi); 
       }else if(moment === 'soir'){
         const messageSoir = 'Il est l\'heure de prendre '+medicament.quantite.soir +' dose(s) de ' + medicament.nom + ' du ' + moment;
-        this.sendMailNotification(email, messageSoir);
+        console.log('messageSoir:', messageSoir);
+        //this.sendMailNotification(email, messageSoir);
       }
 
     }
   }
 
+  /*
   async sendMailNotification(email: string, message: string) {
     // Configurer le transporteur Nodemailer
     const transporter = nodemailer.createTransport({
-      host: 'smtp.example.com', // Remplacez par le serveur SMTP réel
+      host: 'smtp.gmail.com', // Remplacez par le serveur SMTP réel
       port: 587, // Remplacez par le port SMTP réel
       secure: false, // true pour le port sécurisé (par exemple, 465)
       auth: {
         user: 'kamiliachaker@gmail.com', // Remplacez par votre adresse e-mail
-        pass: 'Hakima-1973' // Remplacez par votre mot de passe d'e-mail
+        pass: 'kaki' // Remplacez par votre mot de passe d'e-mail
       }
     });
   
@@ -134,7 +138,7 @@ export class OrdonnanceComponent {
       console.error('Error sending e-mail:', error);
     }
   }
-  
+  */
   
   telechargerPDF() {
     const doc = new jsPDF.default();
