@@ -66,14 +66,11 @@ export class OrdonnanceComponent {
 
 
        //écrit une variable morningDueTime qui est l'horaire de prise du médicament le matin à 8h00min00s
-      const morningTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 8, 0, 0);
+      const morningTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 8, 50, 0);
       //écrit une variable noonDueTime qui est l'horaire de prise du médicament le midi à 12h00min00s
-      const noonTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 12, 0, 0);
+      const noonTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 12, 0 , 0);
       //écrit une variable eveningDueTime qui est l'horaire de prise du médicament le soir à 20h00min00s
-      const eveningTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 23, 57, 0);
-
-      console.log('currentDate date:', currentDate.getDate());
-      console.log('endDay date:', endDay.getDate());
+      const eveningTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 20, 0 , 0);
 
       //si la date de fin de prise du médicament est supérieure à la date du jour
       if (currentDate.getTime() <= endDay.getTime()) {
@@ -87,23 +84,20 @@ export class OrdonnanceComponent {
   scheduleNotification(moment: string, dueTime: Date, medicament: any) {
     console.log('scheduleNotification');
     const currentTime = new Date();
-    console.log('currentTime+60:', currentTime.getTime() + 60000);
-    console.log('dueTime:', dueTime.getTime());
-    console.log('currentTime-60:', currentTime.getTime() - 60000);
   
-    if ((dueTime.getTime() >= ((currentTime.getTime())-180000)) && (dueTime.getTime() <= ((currentTime.getTime())+180000))) {
+    if ((dueTime.getTime() >= ((currentTime.getTime())-60000)) && (dueTime.getTime() <= ((currentTime.getTime())+60000))) {
       const email = localStorage.getItem('email') || '';
       if(moment === 'matin'){
         const messageMatin = 'Il est l\'heure de prendre '+medicament.quantite.matin +' dose(s) de ' + medicament.nom + ' du ' + moment; 
-        console.log('messageMatin:', messageMatin);
+        alert(messageMatin);
         //this.sendMailNotification(email, messageMatin);  
       }else if(moment === 'midi'){
         const messageMidi ='Il est l\'heure de prendre '+medicament.quantite.midi +' dose(s) de ' + medicament.nom + ' du ' + moment;
-        console.log('messageMidi:', messageMidi);
+        alert(messageMidi);
         //this.sendMailNotification(email, messageMidi); 
       }else if(moment === 'soir'){
         const messageSoir = 'Il est l\'heure de prendre '+medicament.quantite.soir +' dose(s) de ' + medicament.nom + ' du ' + moment;
-        console.log('messageSoir:', messageSoir);
+        alert(messageSoir);
         //this.sendMailNotification(email, messageSoir);
       }
 
