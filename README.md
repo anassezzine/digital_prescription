@@ -16,14 +16,17 @@ Avant de pouvoir exécuter ce projet localement, assurez-vous d'avoir les élém
 
 - Node.js : [https://nodejs.org](https://nodejs.org)
 - Angular CLI : Exécutez la commande `npm install -g @angular/cli` pour l'installer globalement.
-- MongoDB : [https://www.mongodb.com](https://www.mongodb.com)
 
 ## Installation
 Clonez ce dépôt de code sur votre machine locale :
 git clone https://github.com/malekfarhat/akm.git
+Dans le dossier racine du Projet, exécutez la commande suivante pour installer tous les dépendances de node.js :
+npm install.
+On fait pareil dans le dossier "front".
+
 
 ## Exécution
-Dans le dossier "front", exécutez la commande suivante pour démarrer l'application Angular :
+Dans le dossier racine du Projet, exécutez la commande suivante pour démarrer l'application Angular :
 ng serve
 L'application sera disponible à l'adresse http://localhost:4200.
 
