@@ -20,8 +20,10 @@ Avant de pouvoir exécuter ce projet localement, assurez-vous d'avoir les élém
 ## Installation
 Clonez ce dépôt de code sur votre machine locale :
 git clone https://github.com/malekfarhat/akm.git
+
 Dans le dossier racine du Projet, exécutez la commande suivante pour installer tous les dépendances de node.js :
 npm install.
+
 On fait pareil dans le dossier "front".
 
 
