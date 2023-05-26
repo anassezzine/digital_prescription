@@ -72,7 +72,7 @@ export class OrdonnanceComponent implements OnInit {
 
 
        //écrit une variable morningDueTime qui est l'horaire de prise du médicament le matin à 8h00min00s
-      const morningTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 8, 50, 0);
+      const morningTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 8, 52, 0);
       //écrit une variable noonDueTime qui est l'horaire de prise du médicament le midi à 12h00min00s
       const noonTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), 12, 0 , 0);
       //écrit une variable eveningDueTime qui est l'horaire de prise du médicament le soir à 20h00min00s
