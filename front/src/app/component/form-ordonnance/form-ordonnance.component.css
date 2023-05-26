@@ -87,6 +87,7 @@
 
   }
   /* Ajouter medicament */
+  /*
 button[type="button"] {
   font-size: 16px;
   padding: 5px 10px;
@@ -96,10 +97,35 @@ button[type="button"] {
   color: white;
   cursor: pointer;
 }
+*/
+.ajouter{
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #0fd7d7;
+  color: white;
+  cursor: pointer;
+}
+.supprimer{
+  font-size: 16px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: none;
+  background-color:red;
+  color: white;
+  cursor: pointer;
+}
+
 
 /* Ajouter medicament:hover */
-button[type="button"]:hover, input[type="submit"]:hover {
+.ajouter:hover {
   background-color: #08bdbd;
+}
+
+/* Supprimer medicament */
+.supprimer:hover {    
+  background-color: #b90e0e;
 }
 
   /* Checkbox square */
@@ -110,6 +136,9 @@ button[type="button"]:hover, input[type="submit"]:hover {
   border: 1px solid #ccc;
   margin-right: 5px;
 }
+
+
+
 
 
 

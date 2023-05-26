@@ -40,10 +40,10 @@
                     <label for="duree_medicament">Durée :</label>
                     <input type="number" [id]="'duree_medicament_' + i" name="duree_medicament[]" [(ngModel)]="medicament.duree"><br><br>
 
-                    <button type="button" *ngIf="i > 0" (click)="supprimerMedicament(i)">Supprimer ce médicament</button>
+                    <button class="supprimer" type="button" *ngIf="i > 0" (click)="supprimerMedicament(i)">Supprimer ce médicament</button>
                 </div>
             </div>
-            <button type="button" (click)="ajouterMedicament()">Ajouter un médicament</button>
+            <button class="ajouter" type="button" (click)="ajouterMedicament()">Ajouter un médicament</button>
             
         </fieldset>
 

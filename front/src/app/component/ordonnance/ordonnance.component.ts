@@ -40,6 +40,7 @@ export class OrdonnanceComponent implements OnInit {
         for (const medicamentData of data.ordonnance.medicaments) {
           this.medicaments.push(medicamentData);
         }
+        
         return this.getnom(data.ordonnance);
       })
     ).subscribe((observable: Observable<string>) => {
