@@ -1,69 +1,67 @@
-# Système de Gestion des Ordonnances Éco-responsable
+# Eco-friendly Prescription Management System
 
+A web-based, eco-friendly prescription management system built using the MEAN stack (MongoDB, Express.js, Angular, Node.js). This project aims to reduce paper usage in medical prescriptions and offer convenient, fast access to prescriptions.
 
-Ce projet est un site web de gestion des ordonnances éco-responsable, développé avec le mean stack (MongoDB ,Express.js ,Angular ,Node.js).
+## 🌟 Features
 
-Il vise à minimiser l'utilisation du papier dans le processus de prescription médicale et à faciliter l'accès aux ordonnances de manière rapide et pratique.
+- **User Authentication**: Registration and login for patients and healthcare professionals.
+- **Patient Portal**: Add, view, and download prescriptions.
+- **Healthcare Professional Portal**: Create and manage prescriptions.
+- **Integrated Medication Database**: For managing drugs and related information.
 
+## 📋 Prerequisites
 
-## Fonctionnalités
+Before running this project locally, ensure you have the following installed:
 
+- Node.js
+- Angular CLI (Install globally using: `npm install -g @angular/cli`)
 
-- Enregistrement et connexion des utilisateurs (patients et professionnels de la santé)
+## 🚀 Installation
 
-- Ajout, consultation et téléchargement d'ordonnances pour les patients
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/malekfarhat/akm.git
+   ```
 
-- Ajout et gestion des ordonnances pour les professionnels de la santé
+2. Navigate to the project root and install dependencies:
+   ```bash
+   cd akm
+   npm install
+   ```
 
-- Base de données intégrée pour les médicaments et les informations liées
+3. Install frontend dependencies by navigating to the front folder:
+   ```bash
+   cd front
+   npm install
+   ```
 
+## 🖥️ Running the Application
 
-## Prérequis
+### Frontend (Angular)
 
+In the project root, start the Angular application:
 
-Avant de pouvoir exécuter ce projet localement, assurez-vous d'avoir les éléments suivants installés :
-
-
-- Node.js : [https://nodejs.org](https://nodejs.org)
-
-- Angular CLI : Exécutez la commande `npm install -g @angular/cli` pour l'installer globalement.
-
-
-## Installation
-
-Clonez ce dépôt de code sur votre machine locale :
-
-git clone https://github.com/malekfarhat/akm.git
-
-Dans le dossier racine du Projet, exécutez la commande suivante pour installer tous les dépendances de node.js :
-
-npm install.
-
-On fait pareil dans le dossier "front"
-
-
-
-## Exécution
-
-Dans le dossier racine du Projet, exécutez la commande suivante pour démarrer l'application Angular :
-
+```bash
 ng serve
+```
 
-L'application sera disponible à l'adresse http://localhost:4200.
+The app will be available at http://localhost:4200.
 
+### Backend (Node.js)
 
-Dans un nouveau terminal, accédez au dossier "server" et exécutez la commande suivante pour démarrer le serveur Node.js :
+Open a new terminal, navigate to the server folder, and start the Node.js server:
 
+```bash
+cd server
 node server.js
+```
 
-Le serveur sera disponible à l'adresse http://localhost:3000.
+The server will be available at http://localhost:3000.
 
+## 🤝 Contribution
 
-## Contribution
+Contributions are welcome! Feel free to submit issues, pull requests, or suggestions for improvement.
 
-Les contributions à ce projet sont les bienvenues. N'hésitez pas à soumettre des problèmes, des demandes d'extraction ou à améliorer la documentation.
+## 📚 Documentation
 
-
-## Documentation
-
-Les diapositives de la présentation ainsi que le rapport du projet sont disponibles dans le dossier AKM
+Presentation slides and the project report can be found in the `AKM` folder.
